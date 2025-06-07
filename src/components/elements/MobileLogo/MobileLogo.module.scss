@@ -1,0 +1,13 @@
+.logo__mobile {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  img {
+    user-select: none;
+  }
+}
+@media (max-width: 650px) {
+  .logo__mobile {
+    display: flex;
+  }
+}
