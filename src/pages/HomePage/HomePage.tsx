@@ -7,11 +7,13 @@ import Pagination from "../../components/blocks/Pagination/Pagination";
 
 function HomePage() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [available, setAvailable] = useState(0);
 
   const PAGE_SIZE = 6;
   const { data: products } = useGetProductsQuery({
     page: currentPage,
     size: PAGE_SIZE,
+    available,
   });
 
   console.log(products);
@@ -19,7 +21,7 @@ function HomePage() {
   return (
     <section>
       <Slider />
-      <Filters />
+      <Filters setAvailable={setAvailable} />
       <Products data={products?.items} />
       <Pagination
         totalPages={products?.totalPages}

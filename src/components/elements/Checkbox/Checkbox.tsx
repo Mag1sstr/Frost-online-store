@@ -1,9 +1,20 @@
 import { useState } from "react";
 import styles from "./Checkbox.module.scss";
-function Checkbox() {
+
+interface IProps {
+  setAvailable: (fn: (prev: number) => number) => void;
+}
+
+function Checkbox({ setAvailable }: IProps) {
   const [active, setActive] = useState(false);
+
+  const handleClick = () => {
+    setActive((prev) => !prev);
+    setAvailable((prev) => (prev === 0 ? 1 : 0));
+  };
+
   return (
-    <div onClick={() => setActive((prev) => !prev)} className={styles.wrapper}>
+    <div onClick={handleClick} className={styles.wrapper}>
       <div className={`${styles.check} ${active && styles.active}`}>
         {active && (
           <svg
