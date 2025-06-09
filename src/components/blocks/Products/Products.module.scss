@@ -1,0 +1,21 @@
+.products {
+  margin-bottom: 30px;
+}
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 370px);
+  justify-content: space-between;
+  row-gap: 30px;
+}
+@media (max-width: 1139px) {
+  .row {
+    justify-content: space-evenly;
+  }
+}
+@media (max-width: 410px) {
+  .row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
