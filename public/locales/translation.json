@@ -1,0 +1,20 @@
+{
+  "ru": {
+    "header": {
+      "astana": "г. Астана",
+      "almaty": "г. Алматы",
+      "search": "Поиск по каталогу ...",
+      "login": "Вход в личный кабинет",
+      "register": "Зарегистрироваться"
+    }
+  },
+  "en": {
+    "header": {
+      "astana": "c. Astana",
+      "almaty": "c. Almaty",
+      "search": "Catalog search ...",
+      "login": "Login",
+      "register": "Registration"
+    }
+  }
+}

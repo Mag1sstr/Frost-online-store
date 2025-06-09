@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useGetProductsQuery } from "../../api/api";
 import Products from "../../components/blocks/Products/Products";
 import Slider from "../../components/blocks/Slider/Slider";
+import Filters from "../../components/blocks/Filters/Filters";
 
 function HomePage() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,6 +18,7 @@ function HomePage() {
   return (
     <section>
       <Slider />
+      <Filters />
       <Products data={products?.items} />
     </section>
   );

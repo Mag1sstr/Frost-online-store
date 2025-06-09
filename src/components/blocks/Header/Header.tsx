@@ -4,8 +4,10 @@ import cart from "../../../images/header/cart.svg";
 import MobileLogo from "../../elements/MobileLogo/MobileLogo";
 import { Link } from "react-router-dom";
 import Search from "../../elements/Search/Search";
+import { useLang } from "../../../hooks/useLang";
 
 function Header() {
+  const { t, lang } = useLang();
   return (
     <header className={styles.header}>
       <div className={styles.top}>
@@ -21,8 +23,8 @@ function Header() {
               />
             </Link>
             <div className={styles.city}>
-              <p>г. Нур-Султан</p>
-              <p>г. Алматы</p>
+              <p>{t[lang].header.astana}</p>
+              <p>{t[lang].header.almaty}</p>
             </div>
             <div className={styles.number}>
               <p>+7 777 777 77 77</p>
@@ -32,8 +34,8 @@ function Header() {
             <Search />
 
             <div className={styles.auth}>
-              <p>Вход в личный кабинет</p>
-              <p>Зарегистрироваться</p>
+              <p>{t[lang].header.login}</p>
+              <p>{t[lang].header.register}</p>
             </div>
             <div className={styles.icons}>
               <div className={styles.row__adaptive}>
