@@ -81,7 +81,7 @@ function Header() {
                       cy="10"
                       r="8"
                       stroke="#CDCDCD"
-                      stroke-width="2"
+                      strokeWidth="2"
                     />
                     <line
                       x1="14.7071"
@@ -89,7 +89,7 @@ function Header() {
                       x2="21.7071"
                       y2="23.2929"
                       stroke="#CDCDCD"
-                      stroke-width="2"
+                      strokeWidth="2"
                     />
                   </svg>
                 </div>

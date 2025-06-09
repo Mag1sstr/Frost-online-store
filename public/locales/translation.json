@@ -6,6 +6,12 @@
       "search": "Поиск по каталогу ...",
       "login": "Вход в личный кабинет",
       "register": "Зарегистрироваться"
+    },
+    "filters": {
+      "category": "Категория",
+      "brand": "Марка",
+      "model": "Модель",
+      "gen": "Поколение"
     }
   },
   "en": {
@@ -15,6 +21,12 @@
       "search": "Catalog search ...",
       "login": "Login",
       "register": "Registration"
+    },
+    "filters": {
+      "category": "Category",
+      "brand": "Brand",
+      "model": "Model",
+      "gen": "Generation"
     }
   }
 }

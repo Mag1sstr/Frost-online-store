@@ -1,11 +1,12 @@
 import styles from "./Select.module.scss";
 import arrow from "../../../images/categories/arrow.svg";
 import { useState } from "react";
+import type { IItems } from "../../../types/interfaces";
 
 interface IProps {
   name?: string;
   title?: string;
-  data?: [];
+  data?: IItems[];
 }
 
 function Select({ name, title, data }: IProps) {
@@ -19,12 +20,15 @@ function Select({ name, title, data }: IProps) {
         {selectName}
         <img src={arrow} alt="" />
         <div className={styles.drop}>
-          <div onClick={() => setSelectName("21313")} className={styles.item}>
-            1331313
-          </div>
-          <div className={styles.item}>1331313</div>
-          <div className={styles.item}>1331313</div>
-          <div className={styles.item}>1331313</div>
+          {data?.map((item) => (
+            <div
+              key={item.id}
+              onClick={() => setSelectName(item.name)}
+              className={styles.item}
+            >
+              {item.name}
+            </div>
+          ))}
         </div>
       </div>
     </div>

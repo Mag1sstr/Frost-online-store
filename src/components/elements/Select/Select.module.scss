@@ -60,3 +60,17 @@
   visibility: visible;
   opacity: 1;
 }
+
+@media (max-width: 450px) {
+  .select {
+    width: 295px;
+  }
+  .wrapper {
+    p {
+      font-size: 14px;
+    }
+  }
+  .select {
+    font-size: 14px;
+  }
+}

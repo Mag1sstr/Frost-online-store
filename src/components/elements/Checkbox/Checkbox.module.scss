@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  margin-top: 30px;
+  white-space: nowrap;
+}
+.check {
+  width: 20px;
+  height: 20px;
+  background-color: #f6f6f6;
+  border: 1px solid #d3d3d3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.active {
+  background-color: #2156bd;
+}
