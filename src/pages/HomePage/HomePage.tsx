@@ -4,8 +4,13 @@ import Products from "../../components/blocks/Products/Products";
 import Slider from "../../components/blocks/Slider/Slider";
 import Filters from "../../components/blocks/Filters/Filters";
 import Pagination from "../../components/blocks/Pagination/Pagination";
+import { useAppSelector } from "../../store/store";
 
 function HomePage() {
+  const { brandId, modelId, generationId } = useAppSelector(
+    (state) => state.filter
+  );
+
   const [currentPage, setCurrentPage] = useState(1);
   const [available, setAvailable] = useState(0);
 
@@ -13,6 +18,9 @@ function HomePage() {
   const { data: products } = useGetProductsQuery({
     page: currentPage,
     size: PAGE_SIZE,
+    brandId,
+    modelId,
+    generationId,
     available,
   });
 

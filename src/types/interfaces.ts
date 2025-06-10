@@ -6,7 +6,7 @@ export interface IProductData {
 }
 export interface IItems {
   name: string;
-  id: number | string;
+  id: number;
 }
 export interface IUser {
   firstName: string;

@@ -10,6 +10,9 @@ interface IProductsParams {
   page: number;
   size: number;
   available?: number;
+  brandId?: number;
+  modelId?: number;
+  generationId?: number;
 }
 
 export const api = createApi({

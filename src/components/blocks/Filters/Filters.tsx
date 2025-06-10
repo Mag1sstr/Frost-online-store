@@ -4,14 +4,21 @@ import { useAppDispatch, useAppSelector } from "../../../store/store";
 import Checkbox from "../../elements/Checkbox/Checkbox";
 import Select from "../../elements/Select/Select";
 import styles from "./Filters.module.scss";
-import { getBrands } from "../../../store/slices/filterSlice";
+import {
+  brandChange,
+  generationChange,
+  getBrands,
+  modelChange,
+} from "../../../store/slices/filterSlice";
 
 interface IProps {
   setAvailable: (fn: (prev: number) => number) => void;
 }
 
 function Filters({ setAvailable }: IProps) {
-  const { brandsData } = useAppSelector((state) => state.filter);
+  const { brandsData, modelsData, genData } = useAppSelector(
+    (state) => state.filter
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -35,14 +42,25 @@ function Filters({ setAvailable }: IProps) {
               name={t[lang].filters.brand}
               title={t[lang].filters.all_brands}
               data={brandsData}
+              onChange={(id) => {
+                dispatch(brandChange(id));
+              }}
             />
             <Select
               name={t[lang].filters.model}
               title={t[lang].filters.all_models}
+              data={modelsData}
+              onChange={(id) => {
+                dispatch(modelChange(id));
+              }}
             />
             <Select
               name={t[lang].filters.gen}
               title={t[lang].filters.all_gen}
+              data={genData}
+              onChange={(id) => {
+                dispatch(generationChange(id));
+              }}
             />
           </div>
           <Checkbox setAvailable={setAvailable} />

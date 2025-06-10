@@ -8,16 +8,17 @@ interface IProps {
   name?: string;
   title?: string;
   data?: IItems[];
+  onChange?: (id: number) => void;
 }
 
-function Select({ name, title, data }: IProps) {
+function Select({ name, title, data, onChange }: IProps) {
   const [selectName, setSelectName] = useState(title);
   const [open, setOpen] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     setSelectName(title);
-  }, [title]);
+  }, [title, data]);
 
   const { t, lang } = useLang();
   const handleDrop = () => {
@@ -44,7 +45,10 @@ function Select({ name, title, data }: IProps) {
             [...data, { id: -1, name: title }].map((item) => (
               <div
                 key={item.id}
-                onClick={() => setSelectName(item.name)}
+                onClick={() => {
+                  onChange!(item.id);
+                  setSelectName(item.name);
+                }}
                 className={styles.item}
               >
                 {item.name}
