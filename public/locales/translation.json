@@ -11,7 +11,12 @@
       "category": "Категория",
       "brand": "Марка",
       "model": "Модель",
-      "gen": "Поколение"
+      "gen": "Поколение",
+
+      "all_categories": "Все категории",
+      "all_brands": "Все марки",
+      "all_models": "Все модели",
+      "all_gen": "Все поколения"
     }
   },
   "en": {
@@ -26,7 +31,12 @@
       "category": "Category",
       "brand": "Brand",
       "model": "Model",
-      "gen": "Generation"
+      "gen": "Generation",
+
+      "all_categories": "All categories",
+      "all_brands": "All brands",
+      "all_models": "All models",
+      "all_gen": "All generations"
     }
   }
 }

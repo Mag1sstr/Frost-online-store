@@ -1,6 +1,6 @@
 import styles from "./Select.module.scss";
 import arrow from "../../../images/categories/arrow.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { IItems } from "../../../types/interfaces";
 
 interface IProps {
@@ -12,6 +12,10 @@ interface IProps {
 function Select({ name, title, data }: IProps) {
   const [selectName, setSelectName] = useState(title);
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setSelectName(title);
+  }, [title]);
 
   return (
     <div onClick={() => setOpen((prev) => !prev)} className={styles.wrapper}>

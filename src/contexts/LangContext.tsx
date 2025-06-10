@@ -7,7 +7,7 @@ export enum EnumLang {
 
 interface ILangContext {
   lang: EnumLang;
-  setLang: (lang: EnumLang) => void;
+  setLang: (fn: (prev: EnumLang) => EnumLang) => void;
 }
 
 export const LangContext = createContext({} as ILangContext);

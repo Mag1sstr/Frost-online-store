@@ -16,8 +16,6 @@ function HomePage() {
     available,
   });
 
-  console.log(products);
-
   return (
     <section>
       <Slider />

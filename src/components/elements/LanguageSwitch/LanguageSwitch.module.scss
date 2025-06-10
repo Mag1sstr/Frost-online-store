@@ -1,0 +1,14 @@
+.switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 18px;
+  &:hover {
+    text-shadow: 0 0 7px white;
+  }
+}

@@ -5,6 +5,7 @@ import MobileLogo from "../../elements/MobileLogo/MobileLogo";
 import { Link } from "react-router-dom";
 import Search from "../../elements/Search/Search";
 import { useLang } from "../../../hooks/useLang";
+import LanguageSwitch from "../../elements/LanguageSwitch/LanguageSwitch";
 
 function Header() {
   const { t, lang } = useLang();
@@ -22,6 +23,8 @@ function Header() {
                 alt="logo"
               />
             </Link>
+            <LanguageSwitch />
+
             <div className={styles.city}>
               <p>{t[lang].header.astana}</p>
               <p>{t[lang].header.almaty}</p>
