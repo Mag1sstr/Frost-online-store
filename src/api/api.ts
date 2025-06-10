@@ -6,12 +6,17 @@ interface IProductsResponse {
   items: IProductData[];
   totalPages: number;
 }
+interface IProductsParams {
+  page: number;
+  size: number;
+  available?: number;
+}
 
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({ baseUrl: "https://frost.runtime.kz/api" }),
   endpoints: (builder) => ({
-    getProducts: builder.query<IProductsResponse, {}>({
+    getProducts: builder.query<IProductsResponse, IProductsParams>({
       query: (params) => ({
         url: "/products",
         params,

@@ -16,7 +16,7 @@ function Filters({ setAvailable }: IProps) {
 
   useEffect(() => {
     dispatch(getBrands());
-  }, []);
+  }, [dispatch]);
 
   console.log(brandsData);
 
@@ -29,6 +29,7 @@ function Filters({ setAvailable }: IProps) {
             <Select
               name={t[lang].filters.category}
               title={t[lang].filters.all_categories}
+              data={[]}
             />
             <Select
               name={t[lang].filters.brand}

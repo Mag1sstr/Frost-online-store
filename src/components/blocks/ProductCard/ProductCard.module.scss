@@ -4,6 +4,7 @@
   border: 1px solid #e6e6e6;
   background-color: #fff;
   transition: 0.2s;
+  cursor: pointer;
 }
 .img {
   width: 100%;
@@ -25,7 +26,6 @@
   flex-direction: column;
   justify-content: space-between;
   height: 150px;
-  cursor: pointer;
 }
 .row {
   display: flex;
@@ -42,6 +42,15 @@
   font-weight: 600;
   color: #fff;
   font-family: inherit;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    background: #1c499f;
+  }
+  &:active {
+    background: #194292;
+  }
 }
 
 @media (max-width: 410px) {

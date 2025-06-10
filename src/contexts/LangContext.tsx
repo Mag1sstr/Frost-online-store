@@ -17,7 +17,10 @@ export default function LangContextProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [lang, setLang] = useState<EnumLang>(EnumLang.RU);
+  // @ts-expect-error because it returns a string
+  const getCurrentLang: EnumLang = localStorage.getItem("lang");
+
+  const [lang, setLang] = useState<EnumLang>(getCurrentLang ?? EnumLang.RU);
 
   return (
     <LangContext.Provider value={{ lang, setLang }}>

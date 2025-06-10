@@ -1,4 +1,5 @@
 .wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -60,6 +61,13 @@
 .select.open .drop {
   visibility: visible;
   opacity: 1;
+}
+.error {
+  position: absolute;
+  right: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #cc3300;
 }
 
 @media (max-width: 450px) {
