@@ -46,9 +46,12 @@
   flex-direction: column;
   gap: 3px;
   cursor: pointer;
+
   p {
     transition: 0.2s;
-    &:hover {
+  }
+  &:hover {
+    p {
       filter: brightness(80%);
     }
   }

@@ -40,11 +40,12 @@ function Header() {
 
             <Search />
 
-            <div className={styles.auth}>
+            <div
+              onClick={() => setOpenRegisterModal(true)}
+              className={styles.auth}
+            >
               <p>{t[lang].header.login}</p>
-              <p onClick={() => setOpenRegisterModal(true)}>
-                {t[lang].header.register}
-              </p>
+              <p>{t[lang].header.register}</p>
             </div>
             <div className={styles.icons}>
               <div className={styles.row__adaptive}>
