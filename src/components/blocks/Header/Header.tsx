@@ -6,11 +6,15 @@ import { Link } from "react-router-dom";
 import Search from "../../elements/Search/Search";
 import { useLang } from "../../../hooks/useLang";
 import LanguageSwitch from "../../elements/LanguageSwitch/LanguageSwitch";
+import RegisterModal from "../../elements/RegisterModal/RegisterModal";
+import { useModals } from "../../../contexts/ModalsContext";
 
 function Header() {
   const { t, lang } = useLang();
+  const { setOpenRegisterModal } = useModals();
   return (
     <header className={styles.header}>
+      <RegisterModal />
       <div className={styles.top}>
         <div className="container">
           <div className={styles.row}>
@@ -38,7 +42,9 @@ function Header() {
 
             <div className={styles.auth}>
               <p>{t[lang].header.login}</p>
-              <p>{t[lang].header.register}</p>
+              <p onClick={() => setOpenRegisterModal(true)}>
+                {t[lang].header.register}
+              </p>
             </div>
             <div className={styles.icons}>
               <div className={styles.row__adaptive}>
