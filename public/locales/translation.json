@@ -16,7 +16,22 @@
       "all_categories": "Все категории",
       "all_brands": "Все марки",
       "all_models": "Все модели",
-      "all_gen": "Все поколения"
+      "all_gen": "Все поколения",
+
+      "available": "в наличии"
+    },
+    "cards": {
+      "buy": "Купить"
+    },
+    "register_modal": {
+      "title": "Создание учётной записи",
+      "name": "Имя",
+      "surname": "Фамилия",
+      "email": "Адрес электронной почты",
+      "password": "Пароль",
+      "rep_password": "Повторите пароль",
+      "btn": "Зарегистрироваться",
+      "second": "Войти в существующую учётную запись"
     }
   },
   "en": {
@@ -36,7 +51,22 @@
       "all_categories": "All categories",
       "all_brands": "All brands",
       "all_models": "All models",
-      "all_gen": "All generations"
+      "all_gen": "All generations",
+
+      "available": "in stock"
+    },
+    "cards": {
+      "buy": "Buy"
+    },
+    "register_modal": {
+      "title": "Create an account",
+      "name": "Name",
+      "surname": "Surname",
+      "email": "E-mail",
+      "password": "Password",
+      "rep_password": "Repeat password",
+      "btn": "Register",
+      "second": "Login to an existing account"
     }
   }
 }

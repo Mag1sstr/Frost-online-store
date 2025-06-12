@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useModals } from "../../../contexts/ModalsContext";
 import styles from "./RegisterModal.module.scss";
+import { useLang } from "../../../hooks/useLang";
 
 function RegisterModal() {
   const [tab, setTab] = useState("register");
 
   const { openRegisterModal, setOpenRegisterModal } = useModals();
+  const { t, lang } = useLang();
   return (
     <div
       onMouseDown={() => setOpenRegisterModal(false)}
@@ -32,7 +34,7 @@ function RegisterModal() {
         </div>
 
         {tab === "register" && (
-          <p className={styles.title}>Создание учётной записи</p>
+          <p className={styles.title}>{t[lang].register_modal.title}</p>
         )}
         {tab === "login" && (
           <p className={styles.title}>Вход в учётную запись</p>
@@ -40,34 +42,44 @@ function RegisterModal() {
         <div className={styles.col}>
           {tab === "register" && (
             <div className={styles.row}>
-              <input className={styles.input} type="text" placeholder="Имя" />
               <input
                 className={styles.input}
                 type="text"
-                placeholder="Фамилия"
+                placeholder={t[lang].register_modal.name}
+              />
+              <input
+                className={styles.input}
+                type="text"
+                placeholder={t[lang].register_modal.surname}
               />
             </div>
           )}
           <input
             className={styles.input}
             type="text"
-            placeholder="Адрес электронной почты"
+            placeholder={t[lang].register_modal.email}
           />
-          <input className={styles.input} type="text" placeholder="Пароль" />
+          <input
+            className={styles.input}
+            type="text"
+            placeholder={t[lang].register_modal.password}
+          />
           {tab === "register" && (
             <input
               className={styles.input}
               type="text"
-              placeholder="Повторите пароль"
+              placeholder={t[lang].register_modal.rep_password}
             />
           )}
         </div>
         <div className={styles.buttons}>
           {tab === "register" && (
             <>
-              <button className={styles.btn}>Зарегистрироваться</button>
+              <button className={styles.btn}>
+                {t[lang].register_modal.btn}
+              </button>
               <button onClick={() => setTab("login")} className={styles.second}>
-                Войти в существующую учётную запись
+                {t[lang].register_modal.second}
               </button>
             </>
           )}

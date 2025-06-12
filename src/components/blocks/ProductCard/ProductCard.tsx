@@ -4,6 +4,7 @@ import stub from "../../../images/other/stub.png";
 import { useNavigate } from "react-router-dom";
 import { useModals } from "../../../contexts/ModalsContext";
 import type { MouseEvent } from "react";
+import { useLang } from "../../../hooks/useLang";
 
 interface IProps extends IProductData {
   onSelect: (item: IProductData) => void;
@@ -11,7 +12,9 @@ interface IProps extends IProductData {
 
 function ProductCard({ id, name, price, available, onSelect }: IProps) {
   const navigate = useNavigate();
+
   const { setOpenBuyModal } = useModals();
+  const { t, lang } = useLang();
 
   const handleBuy = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -28,7 +31,7 @@ function ProductCard({ id, name, price, available, onSelect }: IProps) {
         <div className={styles.row}>
           {price} тг
           <button onClick={handleBuy} className={styles.btn}>
-            Купить
+            {t[lang].cards.buy}
           </button>
         </div>
       </div>

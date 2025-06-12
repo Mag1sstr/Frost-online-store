@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./Checkbox.module.scss";
+import { useLang } from "../../../hooks/useLang";
 
 interface IProps {
   setAvailable: (fn: (prev: number) => number) => void;
@@ -7,6 +8,8 @@ interface IProps {
 
 function Checkbox({ setAvailable }: IProps) {
   const [active, setActive] = useState(false);
+
+  const { t, lang } = useLang();
 
   const handleClick = () => {
     setActive((prev) => !prev);
@@ -32,7 +35,7 @@ function Checkbox({ setAvailable }: IProps) {
           </svg>
         )}
       </div>
-      в наличии
+      {t[lang].filters.available}
     </div>
   );
 }
