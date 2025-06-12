@@ -27,7 +27,7 @@ function HomePage() {
   return (
     <section>
       <Slider />
-      <Filters setAvailable={setAvailable} />
+      <Filters setAvailable={setAvailable} setCurrentPage={setCurrentPage} />
       <Products data={products?.items} />
       <Pagination
         totalPages={products?.totalPages}

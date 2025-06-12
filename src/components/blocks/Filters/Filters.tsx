@@ -13,9 +13,10 @@ import {
 
 interface IProps {
   setAvailable: (fn: (prev: number) => number) => void;
+  setCurrentPage: (page: number) => void;
 }
 
-function Filters({ setAvailable }: IProps) {
+function Filters({ setAvailable, setCurrentPage }: IProps) {
   const { brandsData, modelsData, genData } = useAppSelector(
     (state) => state.filter
   );
@@ -44,6 +45,7 @@ function Filters({ setAvailable }: IProps) {
               data={brandsData}
               onChange={(id) => {
                 dispatch(brandChange(id));
+                setCurrentPage(1);
               }}
             />
             <Select
@@ -52,6 +54,7 @@ function Filters({ setAvailable }: IProps) {
               data={modelsData}
               onChange={(id) => {
                 dispatch(modelChange(id));
+                setCurrentPage(1);
               }}
             />
             <Select
@@ -60,6 +63,7 @@ function Filters({ setAvailable }: IProps) {
               data={genData}
               onChange={(id) => {
                 dispatch(generationChange(id));
+                setCurrentPage(1);
               }}
             />
           </div>
