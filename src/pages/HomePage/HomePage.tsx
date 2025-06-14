@@ -29,11 +29,13 @@ function HomePage() {
       <Slider />
       <Filters setAvailable={setAvailable} setCurrentPage={setCurrentPage} />
       <Products data={products?.items} />
-      <Pagination
-        totalPages={products?.totalPages}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      <div className="container">
+        <Pagination
+          totalPages={products?.totalPages}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
+      </div>
     </section>
   );
 }

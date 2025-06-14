@@ -1,9 +1,9 @@
 import { useModals } from "../../../contexts/ModalsContext";
-import type { IProductData } from "../../../types/interfaces";
+import type { IProduct, IProductData } from "../../../types/interfaces";
 import styles from "./BuyModal.module.scss";
 
 interface IProps {
-  product: IProductData | null;
+  product: IProductData | IProduct | null;
 }
 
 function BuyModal({ product }: IProps) {

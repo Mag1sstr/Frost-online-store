@@ -26,8 +26,6 @@ function Filters({ setAvailable, setCurrentPage }: IProps) {
     dispatch(getBrands());
   }, [dispatch]);
 
-  console.log(brandsData);
-
   const { t, lang } = useLang();
   return (
     <section className={styles.filters}>
