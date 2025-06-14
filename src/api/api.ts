@@ -1,6 +1,6 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/query";
 import { createApi } from "@reduxjs/toolkit/query/react";
-import type { IProductData } from "../types/interfaces";
+import type { IProduct, IProductData } from "../types/interfaces";
 
 interface IProductsResponse {
   items: IProductData[];
@@ -25,7 +25,12 @@ export const api = createApi({
         params,
       }),
     }),
+    getSingleProduct: builder.query<IProduct, string>({
+      query: (id) => ({
+        url: `/products/${id}`,
+      }),
+    }),
   }),
 });
 
-export const { useGetProductsQuery } = api;
+export const { useGetProductsQuery, useGetSingleProductQuery } = api;
