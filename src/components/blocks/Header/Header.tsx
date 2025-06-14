@@ -104,10 +104,12 @@ function Header() {
                   </svg>
                 </div>
               </div>
-              <div className={styles.cart}>
-                <img src={cart} alt="cart" />
-                <div>2</div>
-              </div>
+              <Link to="/cart">
+                <div className={styles.cart}>
+                  <img src={cart} alt="cart" />
+                  <div>2</div>
+                </div>
+              </Link>
             </div>
           </div>
         </div>
