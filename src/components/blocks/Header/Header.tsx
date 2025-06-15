@@ -49,7 +49,10 @@ function Header() {
             </div>
             <div className={styles.icons}>
               <div className={styles.row__adaptive}>
-                <div>
+                <div
+                  className={styles.profile}
+                  onClick={() => setOpenRegisterModal(true)}
+                >
                   <svg
                     width="28"
                     height="28"
