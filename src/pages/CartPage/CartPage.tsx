@@ -11,6 +11,8 @@ const stages = [
 
 function CartPage() {
   const [currentStage, setCurrentStage] = useState(0);
+  const [mainStage, setMainStage] = useState(0);
+
   return (
     <section className={styles.cart}>
       <div className={styles.inner}>
@@ -25,8 +27,11 @@ function CartPage() {
                     currentStage === i && styles.active
                   }`}
                   onClick={() => {
-                    setCurrentStage(i);
+                    if (i <= mainStage) {
+                      setCurrentStage(i);
+                    }
                   }}
+                  disabled={i > mainStage}
                 >
                   {name}
                 </button>

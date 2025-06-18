@@ -35,7 +35,8 @@ function Select({ name, title, data, onChange }: IProps) {
 
   return (
     <div onClick={handleDrop} className={styles.wrapper}>
-      <p>{name}</p>
+      {name && <p>{name}</p>}
+
       {error && <div className={styles.error}>Не выбрана марка или модель</div>}
       <div className={`${styles.select} ${open && styles.open}`}>
         {selectName}
