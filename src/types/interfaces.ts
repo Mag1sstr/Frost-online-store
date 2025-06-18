@@ -80,3 +80,8 @@ export interface IOrdersData {
   id: number;
   created_at: number;
 }
+
+export interface IStages {
+  name: string;
+  component?: React.ReactNode;
+}

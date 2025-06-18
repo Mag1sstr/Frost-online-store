@@ -1,10 +1,21 @@
 import Button from "../../../elements/Button/Button";
 import Select from "../../../elements/Select/Select";
+import StageWrapper from "../../../elements/StageWrapper/StageWrapper";
 import styles from "./CartStage.module.scss";
-function CartStage() {
+
+interface IProps {
+  setMainStage: (stage: number) => void;
+  setCurrentStage: (fn: (prev: number) => number) => void;
+}
+
+function CartStage({ setMainStage, setCurrentStage }: IProps) {
+  const handleNextStage = () => {
+    setMainStage(1);
+    setCurrentStage((prev) => prev + 1);
+  };
   return (
     <>
-      <div className={styles.wrapper}>
+      <StageWrapper>
         <h3 className={styles.title}>Корзина</h3>
         <div className={styles.inner}>
           <div className={styles.details}>
@@ -60,8 +71,8 @@ function CartStage() {
             </div>
           </div>
         </div>
-      </div>
-      <Button width={350} height={50} end>
+      </StageWrapper>
+      <Button onClick={handleNextStage} width={350} height={50} end>
         Оформить заказ
       </Button>
     </>

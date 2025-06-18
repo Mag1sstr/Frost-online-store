@@ -9,6 +9,7 @@ interface IProps {
   start?: boolean;
   center?: boolean;
   end?: boolean;
+  onClick?: () => void;
 }
 
 function Button({
@@ -20,6 +21,7 @@ function Button({
   start,
   center,
   end,
+  onClick,
 }: IProps) {
   return (
     <div
@@ -37,6 +39,7 @@ function Button({
       <button
         className={styles.btn}
         style={{ fontSize, fontWeight, width, height }}
+        onClick={onClick}
       >
         {children}
       </button>

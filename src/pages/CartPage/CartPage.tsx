@@ -1,17 +1,27 @@
 import { useState } from "react";
 import styles from "./CartPage.module.scss";
 import CartStage from "../../components/blocks/Stages/CartStage/CartStage";
-
-const stages = [
-  { name: "Корзина", component: <CartStage /> },
-  { name: "Контактные данные" },
-  { name: "Доставка" },
-  { name: "Завершение" },
-];
+import type { IStages } from "../../types/interfaces";
+import ContactsStage from "../../components/blocks/Stages/ContactsStage/ContactsStage";
 
 function CartPage() {
   const [currentStage, setCurrentStage] = useState(0);
   const [mainStage, setMainStage] = useState(0);
+
+  const stages: IStages[] = [
+    {
+      name: "Корзина",
+      component: (
+        <CartStage
+          setMainStage={setMainStage}
+          setCurrentStage={setCurrentStage}
+        />
+      ),
+    },
+    { name: "Контактные данные", component: <ContactsStage /> },
+    { name: "Доставка" },
+    { name: "Завершение" },
+  ];
 
   return (
     <section className={styles.cart}>
