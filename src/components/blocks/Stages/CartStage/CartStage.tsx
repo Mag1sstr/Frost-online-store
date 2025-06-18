@@ -1,4 +1,4 @@
-import Select from "../../elements/Select/Select";
+import Select from "../../../elements/Select/Select";
 import styles from "./CartStage.module.scss";
 function CartStage() {
   return (
@@ -23,7 +23,9 @@ function CartStage() {
             </div>
             <div className={styles.counter}>
               <div className={styles.counter__row}>
-                <button>-</button>1<button>+</button>
+                <button>-</button>
+                <div className={styles.count}>1</div>
+                <button>+</button>
               </div>
             </div>
             <div className={styles.price}>110 999 тг</div>

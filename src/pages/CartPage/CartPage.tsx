@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./CartPage.module.scss";
-import CartStage from "../../components/blocks/Stages/CartStage";
+import CartStage from "../../components/blocks/Stages/CartStage/CartStage";
 
 const stages = [
   { name: "Корзина", component: <CartStage /> },
