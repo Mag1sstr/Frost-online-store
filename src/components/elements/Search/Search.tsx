@@ -37,7 +37,11 @@ function Search() {
                 .includes(debounceSearchValue.trim().toLowerCase())
             )
             .map((item) => (
-              <Link key={item.id} to={`/products/${item.id}`}>
+              <Link
+                key={item.id}
+                to={`/products/${item.id}`}
+                onClick={() => setSearchValue("")}
+              >
                 <div className={styles.item}>{item.name}</div>
               </Link>
             ))}
