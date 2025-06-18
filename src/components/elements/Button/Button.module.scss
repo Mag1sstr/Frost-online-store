@@ -1,0 +1,16 @@
+.btn {
+  border: none;
+  background: #2156bd;
+  color: #fff;
+  font-family: inherit;
+
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    background: #1c499f;
+  }
+  &:active {
+    background: #194292;
+  }
+}

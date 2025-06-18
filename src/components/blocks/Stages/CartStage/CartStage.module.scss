@@ -3,6 +3,7 @@
   background-color: #fff;
   border: 1px solid #e5e5e5;
   padding: 64px 54px;
+  margin-bottom: 30px;
 }
 .title {
   font-size: 24px;
@@ -120,6 +121,7 @@
     text-align: end;
   }
 }
+
 @media (max-width: 950px) {
   .details,
   .item {
@@ -148,5 +150,18 @@
   .item {
     display: flex;
     flex-direction: column;
+  }
+  .price {
+    font-size: 24px;
+  }
+  .wrapper {
+    padding: 40px 13px;
+  }
+  .total {
+    display: flex;
+    flex-direction: column;
+    span {
+      text-align: start;
+    }
   }
 }
