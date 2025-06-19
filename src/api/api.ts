@@ -1,6 +1,13 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/query";
 import { createApi } from "@reduxjs/toolkit/query/react";
-import type { ICommets, IProduct, IProductData } from "../types/interfaces";
+import type {
+  ICommets,
+  ILoginBody,
+  ILoginResponse,
+  IProduct,
+  IProductData,
+  IRegisterBody,
+} from "../types/interfaces";
 
 interface IProductsResponse {
   items: IProductData[];
@@ -35,6 +42,28 @@ export const api = createApi({
         url: `/reviews?productId=${id}`,
       }),
     }),
+    registerUser: builder.mutation<{}, IRegisterBody>({
+      query: ({ first_name, last_name, email, password }) => ({
+        method: "POST",
+        url: "/registration",
+        body: {
+          first_name,
+          last_name,
+          email,
+          password,
+        },
+      }),
+    }),
+    loginUser: builder.mutation<ILoginResponse, ILoginBody>({
+      query: ({ email, password }) => ({
+        method: "POST",
+        url: "/auth/token",
+        body: {
+          username: email,
+          password,
+        },
+      }),
+    }),
   }),
 });
 
@@ -42,4 +71,6 @@ export const {
   useGetProductsQuery,
   useGetSingleProductQuery,
   useGetReviewsQuery,
+  useRegisterUserMutation,
+  useLoginUserMutation,
 } = api;

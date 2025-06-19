@@ -4,12 +4,16 @@ import styles from "./RegisterModal.module.scss";
 import { useLang } from "../../../hooks/useLang";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import Loader from "../Loader/Loader";
+import {
+  useLoginUserMutation,
+  useRegisterUserMutation,
+} from "../../../api/api";
 
 interface Inputs {
-  first_name?: string;
-  last_name?: string;
-  email?: string;
-  password?: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
 }
 
 function RegisterModal() {
@@ -20,13 +24,29 @@ function RegisterModal() {
   } = useForm();
   const [tab, setTab] = useState("register");
 
+  const [registerUser, { data: regData, isLoading: isRegLoading }] =
+    useRegisterUserMutation();
+  const [
+    loginUser,
+    { data: loginData, isLoading: isLoginLoading, isSuccess: isLoginSuccess },
+  ] = useLoginUserMutation();
+
   const { openRegisterModal, setOpenRegisterModal } = useModals();
   const { t, lang } = useLang();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+    if (tab === "register") {
+      registerUser(data);
+    }
+    if (tab === "login") {
+      loginUser(data);
+    }
   };
-  console.log(errors);
+  if (isLoginSuccess) {
+    setOpenRegisterModal(false);
+  }
+
+  console.log("Login resp", loginData);
 
   return (
     <form
@@ -34,7 +54,8 @@ function RegisterModal() {
       onMouseDown={() => setOpenRegisterModal(false)}
       className={`${styles.wrapper} ${openRegisterModal && styles.open}`}
     >
-      {/* <Loader /> */}
+      {isRegLoading && <Loader />}
+      {isLoginLoading && <Loader />}
       <div onMouseDown={(e) => e.stopPropagation()} className={styles.modal}>
         <div
           onClick={() => setOpenRegisterModal(false)}
@@ -115,7 +136,9 @@ function RegisterModal() {
           )}
           {tab === "login" && (
             <>
-              <button className={styles.btn}>Войти</button>
+              <button type="submit" className={styles.btn}>
+                Войти
+              </button>
               <button
                 onClick={() => setTab("register")}
                 className={styles.second}

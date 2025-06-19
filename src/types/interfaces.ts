@@ -85,3 +85,18 @@ export interface IStages {
   name: string;
   component?: React.ReactNode;
 }
+
+export interface IRegisterBody {
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
+}
+export interface ILoginBody {
+  email: string;
+  password: string;
+}
+export interface ILoginResponse {
+  access_token: string;
+  refresh_token: string;
+}
