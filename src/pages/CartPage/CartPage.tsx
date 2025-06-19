@@ -28,7 +28,15 @@ function CartPage() {
         />
       ),
     },
-    { name: "Доставка", component: <DeliveryStage /> },
+    {
+      name: "Доставка",
+      component: (
+        <DeliveryStage
+          setMainStage={setMainStage}
+          setCurrentStage={setCurrentStage}
+        />
+      ),
+    },
     { name: "Завершение" },
   ];
 
