@@ -1,0 +1,31 @@
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.block {
+  width: 480px;
+}
+.wrapper {
+  width: 100%;
+  p {
+    font-weight: 600;
+    color: #646464;
+    margin-bottom: 10px;
+  }
+  input {
+    width: 100%;
+    outline: none;
+    border: 1px solid #d3d3d3;
+    background: #f6f6f6;
+    font-size: 16px;
+    padding: 6px 20px;
+    font-family: inherit;
+  }
+}

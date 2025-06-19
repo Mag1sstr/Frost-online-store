@@ -1,7 +1,18 @@
 import Button from "../../../elements/Button/Button";
 import StageWrapper from "../../../elements/StageWrapper/StageWrapper";
 import styles from "./ContactsStage.module.scss";
-function ContactsStage() {
+
+interface IProps {
+  setMainStage: (stage: number) => void;
+  setCurrentStage: (fn: (prev: number) => number) => void;
+}
+
+function ContactsStage({ setMainStage, setCurrentStage }: IProps) {
+  const handleNextStage = () => {
+    setMainStage(2);
+    setCurrentStage((prev) => prev + 1);
+  };
+
   return (
     <>
       <StageWrapper>
@@ -36,7 +47,7 @@ function ContactsStage() {
           </div>
         </div>
       </StageWrapper>
-      <Button width={350} height={50} end>
+      <Button onClick={handleNextStage} width={350} height={50} end>
         Подтвердить
       </Button>
     </>

@@ -3,6 +3,7 @@ import styles from "./CartPage.module.scss";
 import CartStage from "../../components/blocks/Stages/CartStage/CartStage";
 import type { IStages } from "../../types/interfaces";
 import ContactsStage from "../../components/blocks/Stages/ContactsStage/ContactsStage";
+import DeliveryStage from "../../components/blocks/Stages/DeliveryStage/DeliveryStage";
 
 function CartPage() {
   const [currentStage, setCurrentStage] = useState(0);
@@ -18,8 +19,16 @@ function CartPage() {
         />
       ),
     },
-    { name: "Контактные данные", component: <ContactsStage /> },
-    { name: "Доставка" },
+    {
+      name: "Контактные данные",
+      component: (
+        <ContactsStage
+          setMainStage={setMainStage}
+          setCurrentStage={setCurrentStage}
+        />
+      ),
+    },
+    { name: "Доставка", component: <DeliveryStage /> },
     { name: "Завершение" },
   ];
 
