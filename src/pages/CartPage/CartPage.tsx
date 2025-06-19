@@ -4,6 +4,7 @@ import CartStage from "../../components/blocks/Stages/CartStage/CartStage";
 import type { IStages } from "../../types/interfaces";
 import ContactsStage from "../../components/blocks/Stages/ContactsStage/ContactsStage";
 import DeliveryStage from "../../components/blocks/Stages/DeliveryStage/DeliveryStage";
+import FinalStage from "../../components/blocks/Stages/FinalStage/FinalStage";
 
 function CartPage() {
   const [currentStage, setCurrentStage] = useState(0);
@@ -37,7 +38,7 @@ function CartPage() {
         />
       ),
     },
-    { name: "Завершение" },
+    { name: "Завершение", component: <FinalStage /> },
   ];
 
   return (
