@@ -2,17 +2,39 @@ import { useState } from "react";
 import { useModals } from "../../../contexts/ModalsContext";
 import styles from "./RegisterModal.module.scss";
 import { useLang } from "../../../hooks/useLang";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import Loader from "../Loader/Loader";
+
+interface Inputs {
+  first_name?: string;
+  last_name?: string;
+  email?: string;
+  password?: string;
+}
 
 function RegisterModal() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const [tab, setTab] = useState("register");
 
   const { openRegisterModal, setOpenRegisterModal } = useModals();
   const { t, lang } = useLang();
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log(data);
+  };
+  console.log(errors);
+
   return (
-    <div
+    <form
+      onSubmit={handleSubmit(onSubmit)}
       onMouseDown={() => setOpenRegisterModal(false)}
       className={`${styles.wrapper} ${openRegisterModal && styles.open}`}
     >
+      {/* <Loader /> */}
       <div onMouseDown={(e) => e.stopPropagation()} className={styles.modal}>
         <div
           onClick={() => setOpenRegisterModal(false)}
@@ -46,11 +68,13 @@ function RegisterModal() {
                 className={styles.input}
                 type="text"
                 placeholder={t[lang].register_modal.name}
+                {...register("first_name")}
               />
               <input
                 className={styles.input}
                 type="text"
                 placeholder={t[lang].register_modal.surname}
+                {...register("last_name")}
               />
             </div>
           )}
@@ -58,11 +82,17 @@ function RegisterModal() {
             className={styles.input}
             type="text"
             placeholder={t[lang].register_modal.email}
+            {...register("email", {
+              required: true,
+            })}
           />
           <input
             className={styles.input}
             type="text"
             placeholder={t[lang].register_modal.password}
+            {...register("password", {
+              required: true,
+            })}
           />
           {tab === "register" && (
             <input
@@ -75,7 +105,7 @@ function RegisterModal() {
         <div className={styles.buttons}>
           {tab === "register" && (
             <>
-              <button className={styles.btn}>
+              <button type="submit" className={styles.btn}>
                 {t[lang].register_modal.btn}
               </button>
               <button onClick={() => setTab("login")} className={styles.second}>
@@ -96,7 +126,7 @@ function RegisterModal() {
           )}
         </div>
       </div>
-    </div>
+    </form>
   );
 }
 
