@@ -1,0 +1,53 @@
+.profile {
+  margin: 60px 0;
+}
+.title {
+  font-size: 36px;
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+.row {
+  display: flex;
+  gap: 30px;
+}
+.menu {
+  width: 370px;
+  padding: 64px 40px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  color: #1a2749;
+}
+.menu__col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.menu__item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.icon {
+  path {
+    transition: 0.2s;
+  }
+  circle {
+    transition: 0.2s;
+  }
+}
+.menu__item.active {
+  color: #2156bd;
+  .icon {
+    stroke: #2156bd;
+    path {
+      stroke: #2156bd;
+    }
+    circle {
+      stroke: #2156bd;
+    }
+  }
+}
