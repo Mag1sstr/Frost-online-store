@@ -1,8 +1,8 @@
 import styles from "./FinalStage.module.scss";
-import StageWrapper from "../../../elements/StageWrapper/StageWrapper";
+import StageWrapper from "../../../../elements/StageWrapper/StageWrapper";
 import { Link } from "react-router-dom";
 
-import checkImg from "../../../../images/cart/check.svg";
+import checkImg from "../../../../../images/cart/check.svg";
 
 function FinalStage() {
   return (

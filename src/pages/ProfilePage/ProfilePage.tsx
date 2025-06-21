@@ -98,6 +98,7 @@ function ProfilePage() {
               ))}
             </div>
           </div>
+          <div className={styles.content}></div>
         </div>
       </div>
     </section>

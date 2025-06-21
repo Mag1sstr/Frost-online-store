@@ -1,6 +1,6 @@
-import Button from "../../../elements/Button/Button";
-import Select from "../../../elements/Select/Select";
-import StageWrapper from "../../../elements/StageWrapper/StageWrapper";
+import Button from "../../../../elements/Button/Button";
+import Select from "../../../../elements/Select/Select";
+import StageWrapper from "../../../../elements/StageWrapper/StageWrapper";
 import styles from "./CartStage.module.scss";
 
 interface IProps {

@@ -30,6 +30,9 @@
   font-weight: 600;
   cursor: pointer;
   transition: 0.2s;
+  &:not(.active):hover {
+    opacity: 0.8;
+  }
 }
 .icon {
   path {

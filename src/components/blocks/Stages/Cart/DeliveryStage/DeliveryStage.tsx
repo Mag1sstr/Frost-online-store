@@ -1,6 +1,6 @@
 import styles from "./DeliveryStage.module.scss";
-import StageWrapper from "../../../elements/StageWrapper/StageWrapper";
-import Button from "../../../elements/Button/Button";
+import StageWrapper from "../../../../elements/StageWrapper/StageWrapper";
+import Button from "../../../../elements/Button/Button";
 
 interface IProps {
   setMainStage: (stage: number) => void;

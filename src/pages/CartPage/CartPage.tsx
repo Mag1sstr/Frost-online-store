@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styles from "./CartPage.module.scss";
-import CartStage from "../../components/blocks/Stages/CartStage/CartStage";
+import CartStage from "../../components/blocks/Stages/Cart/CartStage/CartStage";
 import type { IStages } from "../../types/interfaces";
-import ContactsStage from "../../components/blocks/Stages/ContactsStage/ContactsStage";
-import DeliveryStage from "../../components/blocks/Stages/DeliveryStage/DeliveryStage";
-import FinalStage from "../../components/blocks/Stages/FinalStage/FinalStage";
+import ContactsStage from "../../components/blocks/Stages/Cart/ContactsStage/ContactsStage";
+import DeliveryStage from "../../components/blocks/Stages/Cart/DeliveryStage/DeliveryStage";
+import FinalStage from "../../components/blocks/Stages/Cart/FinalStage/FinalStage";
 
 function CartPage() {
   const [currentStage, setCurrentStage] = useState(0);

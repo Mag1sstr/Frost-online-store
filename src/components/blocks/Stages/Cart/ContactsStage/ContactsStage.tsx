@@ -1,5 +1,5 @@
-import Button from "../../../elements/Button/Button";
-import StageWrapper from "../../../elements/StageWrapper/StageWrapper";
+import Button from "../../../../elements/Button/Button";
+import StageWrapper from "../../../../elements/StageWrapper/StageWrapper";
 import styles from "./ContactsStage.module.scss";
 
 interface IProps {
