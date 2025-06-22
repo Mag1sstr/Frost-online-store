@@ -54,3 +54,43 @@
     }
   }
 }
+.content {
+  width: 770px;
+}
+
+@media (max-width: 1020px) {
+  .row {
+    flex-direction: column;
+  }
+  .menu {
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 5px 5px 0 0;
+  }
+  .menu__col {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .content {
+    width: 100%;
+  }
+}
+@media (max-width: 750px) {
+  .menu__item {
+    p {
+      display: none;
+    }
+  }
+}
+@media (max-width: 420px) {
+  .profile {
+    margin: 18px 0;
+  }
+  .row {
+    gap: 0;
+  }
+  .title {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+}

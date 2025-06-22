@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./ProfilePage.module.scss";
+import OrdersStage from "../../components/blocks/Stages/Profile/OrdersStage/OrdersStage";
 
 function ProfilePage() {
   const [currentStage, setCurrentStage] = useState(0);
@@ -23,6 +24,7 @@ function ProfilePage() {
           />
         </svg>
       ),
+      component: <OrdersStage />,
     },
     {
       name: "Контактные данные",
@@ -38,24 +40,25 @@ function ProfilePage() {
           <path
             d="M4.70215 22.1786C6.21176 18.6479 9.58311 16.1898 13.4999 16.1898C17.5109 16.1898 20.9499 18.7676 22.4033 22.4352"
             stroke="#1A2749"
-            stroke-width="2"
+            strokeWidth="2"
           />
           <circle
             cx="13.5002"
             cy="10.8507"
             r="4.58271"
             stroke="#1A2749"
-            stroke-width="2"
+            strokeWidth="2"
           />
           <circle
             cx="13.5"
             cy="13.5"
             r="12.5"
             stroke="#1A2749"
-            stroke-width="2"
+            strokeWidth="2"
           />
         </svg>
       ),
+      component: <OrdersStage />,
     },
     {
       name: "Доставка",
@@ -75,6 +78,7 @@ function ProfilePage() {
           />
         </svg>
       ),
+      component: <OrdersStage />,
     },
   ];
   return (
@@ -93,12 +97,12 @@ function ProfilePage() {
                   onClick={() => setCurrentStage(index)}
                 >
                   {img}
-                  {name}
+                  <p>{name}</p>
                 </div>
               ))}
             </div>
           </div>
-          <div className={styles.content}></div>
+          <div className={styles.content}>{stages[currentStage].component}</div>
         </div>
       </div>
     </section>

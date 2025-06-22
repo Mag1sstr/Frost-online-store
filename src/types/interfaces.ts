@@ -32,6 +32,7 @@ export interface IProduct {
   };
 }
 export interface ICommets {
+  id: number;
   review: string;
   user: {
     firstName: string;

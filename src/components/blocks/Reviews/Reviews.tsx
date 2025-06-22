@@ -17,6 +17,8 @@ function Reviews({ data }: IProps) {
   const startIndex = currentPage * pageSize - pageSize;
   const endIndex = startIndex + pageSize;
 
+  // console.log(data);
+
   return (
     <div className={styles.reviews}>
       <p className={styles.reviews__title}>Отзывы</p>
@@ -27,8 +29,8 @@ function Reviews({ data }: IProps) {
       <div className={styles.reviews__col}>
         {data
           ?.slice(startIndex, endIndex)
-          .map(({ review, user: { firstName, lastName } }) => (
-            <div className={styles.reviews__item}>
+          .map(({ review, user: { firstName, lastName }, id }) => (
+            <div key={id} className={styles.reviews__item}>
               <p className={styles.item__name}>
                 {firstName} {lastName}
               </p>
