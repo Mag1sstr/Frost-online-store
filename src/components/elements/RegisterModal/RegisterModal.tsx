@@ -8,6 +8,8 @@ import {
   useLoginUserMutation,
   useRegisterUserMutation,
 } from "../../../api/api";
+import { useAppDispatch } from "../../../store/store";
+import { setToken } from "../../../store/slices/authSlice";
 
 interface Inputs {
   first_name: string;
@@ -20,9 +22,10 @@ function RegisterModal() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm();
+    // formState: { errors },
+  } = useForm<Inputs>();
   const [tab, setTab] = useState("register");
+  const dispatch = useAppDispatch();
 
   const [registerUser, { data: regData, isLoading: isRegLoading }] =
     useRegisterUserMutation();
@@ -44,6 +47,7 @@ function RegisterModal() {
   };
   if (isLoginSuccess) {
     setOpenRegisterModal(false);
+    dispatch(setToken(loginData.access_token));
   }
 
   console.log("Login resp", loginData);

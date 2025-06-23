@@ -8,10 +8,13 @@ import { useLang } from "../../../hooks/useLang";
 import LanguageSwitch from "../../elements/LanguageSwitch/LanguageSwitch";
 import RegisterModal from "../../elements/RegisterModal/RegisterModal";
 import { useModals } from "../../../contexts/ModalsContext";
+import { useAuth } from "../../../store/slices/authSlice";
 
 function Header() {
   const { t, lang } = useLang();
   const { setOpenRegisterModal } = useModals();
+  const { user } = useAuth();
+
   return (
     <header className={styles.header}>
       <RegisterModal />
@@ -39,14 +42,22 @@ function Header() {
             </div>
 
             <Search />
-
-            <div
-              onClick={() => setOpenRegisterModal(true)}
-              className={styles.auth}
-            >
-              <p>{t[lang].header.login}</p>
-              <p>{t[lang].header.register}</p>
-            </div>
+            {user ? (
+              <Link to="/profile">
+                <div className={styles.user}>
+                  <p>{`${user.firstName}(${user.email})`}</p>
+                  <p>Мой профиль</p>
+                </div>
+              </Link>
+            ) : (
+              <div
+                onClick={() => setOpenRegisterModal(true)}
+                className={styles.auth}
+              >
+                <p>{t[lang].header.login}</p>
+                <p>{t[lang].header.register}</p>
+              </div>
+            )}
             <div className={styles.icons}>
               <div className={styles.row__adaptive}>
                 <div

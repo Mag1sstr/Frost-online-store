@@ -2,10 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import { api } from "../api/api";
 import filterSlice from "./slices/filterSlice";
+import authSlice from "./slices/authSlice";
 
 export const store = configureStore({
   reducer: {
     filter: filterSlice,
+    auth: authSlice,
     [api.reducerPath]: api.reducer,
   },
   middleware(getDefaultMiddleware) {

@@ -8,6 +8,7 @@ import type {
   IProductData,
   IRegisterBody,
 } from "../types/interfaces";
+import type { RootState } from "../store/store";
 
 interface IProductsResponse {
   items: IProductData[];
@@ -27,7 +28,11 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://frost.runtime.kz/api",
     prepareHeaders(headers, { getState }) {
-      console.log(getState().filter);
+      const token = (getState() as RootState).auth.token;
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      return headers;
     },
   }),
   endpoints: (builder) => ({
@@ -52,6 +57,7 @@ export const api = createApi({
         url: "/cart",
       }),
     }),
+
     registerUser: builder.mutation<{}, IRegisterBody>({
       query: ({ first_name, last_name, email, password }) => ({
         method: "POST",
@@ -74,6 +80,12 @@ export const api = createApi({
         },
       }),
     }),
+    getUser: builder.mutation({
+      query: () => ({
+        method: "POST",
+        url: "/auth/user",
+      }),
+    }),
   }),
 });
 
@@ -84,4 +96,5 @@ export const {
   useGetCartQuery,
   useRegisterUserMutation,
   useLoginUserMutation,
+  useGetUserMutation,
 } = api;
