@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { IUser } from "../../types/interfaces";
-import { useAppSelector } from "../store";
+import { useAppSelector, type AppDispatch } from "../store";
+import axios from "axios";
 
 export interface AuthState {
   user: IUser | null;
@@ -25,6 +26,18 @@ export const authSlice = createSlice({
     },
   },
 });
+
+export function getUser() {
+  return function (dispatch: AppDispatch) {
+    const { token } = useAppSelector((state) => state.auth);
+    if (token) {
+      (axios.defaults.headers.common["Authorization"] = `Bearer ${token}`),
+        axios.post("https://frost.runtime.kz/api/auth/user").then((resp) => {
+          dispatch(setUser(resp.data));
+        });
+    }
+  };
+}
 
 export function useAuth() {
   return useAppSelector((state) => state.auth);

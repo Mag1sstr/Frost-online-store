@@ -8,15 +8,19 @@ import { setUser, useAuth } from "../store/slices/authSlice";
 
 function App() {
   const dispatch = useAppDispatch();
-  const [getUser, { data, isSuccess }] = useGetUserMutation();
+  const [getUser] = useGetUserMutation();
+  const { user, token } = useAuth();
 
   useEffect(() => {
-    getUser(null);
-  }, []);
-  if (isSuccess) {
-    dispatch(setUser(data));
-  }
-  const { user } = useAuth();
+    getUser(null)
+      .then((resp) => {
+        dispatch(setUser(resp.data));
+      })
+      .catch(() => {
+        dispatch(setUser(null));
+      });
+  }, [token]);
+
   console.log(user);
 
   return (
