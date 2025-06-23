@@ -24,7 +24,12 @@ interface IProductsParams {
 
 export const api = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://frost.runtime.kz/api" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://frost.runtime.kz/api",
+    prepareHeaders(headers, { getState }) {
+      console.log(getState().filter);
+    },
+  }),
   endpoints: (builder) => ({
     getProducts: builder.query<IProductsResponse, IProductsParams>({
       query: (params) => ({
@@ -40,6 +45,11 @@ export const api = createApi({
     getReviews: builder.query<ICommets[], string>({
       query: (id) => ({
         url: `/reviews?productId=${id}`,
+      }),
+    }),
+    getCart: builder.query<[], null>({
+      query: () => ({
+        url: "/cart",
       }),
     }),
     registerUser: builder.mutation<{}, IRegisterBody>({
@@ -71,6 +81,7 @@ export const {
   useGetProductsQuery,
   useGetSingleProductQuery,
   useGetReviewsQuery,
+  useGetCartQuery,
   useRegisterUserMutation,
   useLoginUserMutation,
 } = api;

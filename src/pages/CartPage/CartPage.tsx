@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./CartPage.module.scss";
 import CartStage from "../../components/blocks/Stages/Cart/CartStage/CartStage";
 import type { IStages } from "../../types/interfaces";
 import ContactsStage from "../../components/blocks/Stages/Cart/ContactsStage/ContactsStage";
 import DeliveryStage from "../../components/blocks/Stages/Cart/DeliveryStage/DeliveryStage";
 import FinalStage from "../../components/blocks/Stages/Cart/FinalStage/FinalStage";
+import { useGetCartQuery } from "../../api/api";
+import axios from "axios";
 
 function CartPage() {
   const [currentStage, setCurrentStage] = useState(0);
