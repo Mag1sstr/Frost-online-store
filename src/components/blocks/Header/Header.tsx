@@ -9,12 +9,20 @@ import LanguageSwitch from "../../elements/LanguageSwitch/LanguageSwitch";
 import RegisterModal from "../../elements/RegisterModal/RegisterModal";
 import { useModals } from "../../../contexts/ModalsContext";
 import { useAuth } from "../../../store/slices/authSlice";
+import { useGetCartQuery } from "../../../api/api";
 
 function Header() {
   const { t, lang } = useLang();
   const { setOpenRegisterModal } = useModals();
   const { user } = useAuth();
   const navigate = useNavigate();
+
+  const { count } = useGetCartQuery(null, {
+    refetchOnMountOrArgChange: true,
+    selectFromResult: ({ data }) => ({
+      count: data?.items.length,
+    }),
+  });
 
   return (
     <header className={styles.header}>
@@ -128,7 +136,7 @@ function Header() {
               <Link to="/cart">
                 <div className={styles.cart}>
                   <img src={cart} alt="cart" />
-                  <div>2</div>
+                  {count && count > 0 && <div>{count}</div>}
                 </div>
               </Link>
             </div>
