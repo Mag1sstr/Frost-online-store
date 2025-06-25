@@ -2,7 +2,7 @@ import styles from "./Header.module.scss";
 import logo from "../../../images/logo/logo.svg";
 import cart from "../../../images/header/cart.svg";
 import MobileLogo from "../../elements/MobileLogo/MobileLogo";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Search from "../../elements/Search/Search";
 import { useLang } from "../../../hooks/useLang";
 import LanguageSwitch from "../../elements/LanguageSwitch/LanguageSwitch";
@@ -14,6 +14,7 @@ function Header() {
   const { t, lang } = useLang();
   const { setOpenRegisterModal } = useModals();
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <header className={styles.header}>
@@ -62,7 +63,13 @@ function Header() {
               <div className={styles.row__adaptive}>
                 <div
                   className={styles.profile}
-                  onClick={() => setOpenRegisterModal(true)}
+                  onClick={() => {
+                    if (user) {
+                      navigate("/profile");
+                    } else {
+                      setOpenRegisterModal(true);
+                    }
+                  }}
                 >
                   <svg
                     width="28"
