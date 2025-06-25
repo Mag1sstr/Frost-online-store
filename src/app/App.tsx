@@ -9,7 +9,7 @@ import { setUser, useAuth } from "../store/slices/authSlice";
 function App() {
   const dispatch = useAppDispatch();
   const [getUser] = useGetUserMutation();
-  const { user, token } = useAuth();
+  const { token } = useAuth();
 
   useEffect(() => {
     getUser(null)
@@ -21,7 +21,7 @@ function App() {
       });
   }, [token]);
 
-  console.log(user);
+  console.log(token);
 
   return (
     <div className="app">

@@ -24,25 +24,17 @@ export const authSlice = createSlice({
     setUser(state, action) {
       state.user = action.payload;
     },
+    logoutUser(state) {
+      localStorage.removeItem("token");
+      state.user = null;
+    },
   },
 });
-
-export function getUser() {
-  return function (dispatch: AppDispatch) {
-    const { token } = useAppSelector((state) => state.auth);
-    if (token) {
-      (axios.defaults.headers.common["Authorization"] = `Bearer ${token}`),
-        axios.post("https://frost.runtime.kz/api/auth/user").then((resp) => {
-          dispatch(setUser(resp.data));
-        });
-    }
-  };
-}
 
 export function useAuth() {
   return useAppSelector((state) => state.auth);
 }
 
-export const { setToken, setUser } = authSlice.actions;
+export const { setToken, setUser, logoutUser } = authSlice.actions;
 
 export default authSlice.reducer;

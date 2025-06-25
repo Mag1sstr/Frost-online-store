@@ -1,9 +1,20 @@
 import { useState } from "react";
 import styles from "./ProfilePage.module.scss";
 import OrdersStage from "../../components/blocks/Stages/Profile/OrdersStage/OrdersStage";
+import { useAppDispatch } from "../../store/store";
+import { logoutUser } from "../../store/slices/authSlice";
+import { useNavigate } from "react-router-dom";
 
 function ProfilePage() {
   const [currentStage, setCurrentStage] = useState(0);
+
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const logout = () => {
+    dispatch(logoutUser());
+    navigate("/");
+  };
 
   const stages = [
     {
@@ -60,26 +71,26 @@ function ProfilePage() {
       ),
       component: <OrdersStage />,
     },
-    {
-      name: "Доставка",
-      img: (
-        <svg
-          className={styles.icon}
-          width="28"
-          height="25"
-          viewBox="0 0 28 25"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M14.5488 22.7559L14.5488 19L0.999999 19L1 6L14.5488 6L14.5488 2.13086L26.4717 12.0303L14.5488 22.7559Z"
-            stroke="#1a2749"
-            strokeWidth="2"
-          />
-        </svg>
-      ),
-      component: <OrdersStage />,
-    },
+    // {
+    //   name: "Доставка",
+    //   img: (
+    //     <svg
+    //       className={styles.icon}
+    //       width="28"
+    //       height="25"
+    //       viewBox="0 0 28 25"
+    //       fill="none"
+    //       xmlns="http://www.w3.org/2000/svg"
+    //     >
+    //       <path
+    //         d="M14.5488 22.7559L14.5488 19L0.999999 19L1 6L14.5488 6L14.5488 2.13086L26.4717 12.0303L14.5488 22.7559Z"
+    //         stroke="#1a2749"
+    //         strokeWidth="2"
+    //       />
+    //     </svg>
+    //   ),
+    //   component: <OrdersStage />,
+    // },
   ];
   return (
     <section className={styles.profile}>
@@ -100,6 +111,22 @@ function ProfilePage() {
                   <p>{name}</p>
                 </div>
               ))}
+              <div onClick={logout} className={styles.logout}>
+                <svg
+                  width="28"
+                  height="25"
+                  viewBox="0 0 28 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M14.5488 22.7559L14.5488 19L0.999999 19L1 6L14.5488 6L14.5488 2.13086L26.4717 12.0303L14.5488 22.7559Z"
+                    stroke="#1a2749"
+                    strokeWidth="2"
+                  />
+                </svg>
+                <p>Выйти</p>
+              </div>
             </div>
           </div>
           <div className={styles.content}>{stages[currentStage].component}</div>

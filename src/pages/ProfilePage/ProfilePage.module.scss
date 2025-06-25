@@ -35,6 +35,29 @@
     opacity: 0.8;
   }
 }
+.logout {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+  svg {
+    path {
+      transition: 0.2s;
+    }
+  }
+  &:hover {
+    color: #b00000;
+    opacity: 0.8;
+    svg {
+      path {
+        stroke: #b00000;
+      }
+    }
+  }
+}
 .icon {
   path {
     transition: 0.2s;
