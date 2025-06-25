@@ -26,6 +26,7 @@ interface IProductsParams {
 
 export const api = createApi({
   reducerPath: "api",
+  tagTypes: ["Cart"],
   baseQuery: fetchBaseQuery({
     baseUrl: "https://frost.runtime.kz/api",
     prepareHeaders(headers, { getState }) {
@@ -57,6 +58,11 @@ export const api = createApi({
       query: () => ({
         url: "/cart",
       }),
+      providesTags: () => [
+        {
+          type: "Cart",
+        },
+      ],
     }),
     addToCart: builder.mutation<null, { productId: number; count: number }>({
       query: ({ productId, count }) => ({
@@ -67,6 +73,11 @@ export const api = createApi({
           count,
         },
       }),
+      invalidatesTags: () => [
+        {
+          type: "Cart",
+        },
+      ],
     }),
 
     registerUser: builder.mutation<{}, IRegisterBody>({
