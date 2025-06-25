@@ -1,6 +1,7 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/query";
 import { createApi } from "@reduxjs/toolkit/query/react";
 import type {
+  ICartResponse,
   ICommets,
   ILoginBody,
   ILoginResponse,
@@ -52,9 +53,19 @@ export const api = createApi({
         url: `/reviews?productId=${id}`,
       }),
     }),
-    getCart: builder.query<[], null>({
+    getCart: builder.query<ICartResponse, null>({
       query: () => ({
         url: "/cart",
+      }),
+    }),
+    addToCart: builder.mutation<null, { productId: number; count: number }>({
+      query: ({ productId, count }) => ({
+        method: "GET",
+        url: "/cart/add",
+        params: {
+          productId,
+          count,
+        },
       }),
     }),
 
@@ -94,6 +105,7 @@ export const {
   useGetSingleProductQuery,
   useGetReviewsQuery,
   useGetCartQuery,
+  useAddToCartMutation,
   useRegisterUserMutation,
   useLoginUserMutation,
   useGetUserMutation,

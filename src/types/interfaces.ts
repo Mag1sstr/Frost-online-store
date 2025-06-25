@@ -39,7 +39,7 @@ export interface ICommets {
     lastName: string;
   };
 }
-export interface IBasketPageData {
+export interface ICart {
   count: number;
   product: {
     name: string;
@@ -100,4 +100,8 @@ export interface ILoginBody {
 export interface ILoginResponse {
   access_token: string;
   refresh_token: string;
+}
+export interface ICartResponse {
+  user: IUser;
+  items: ICart[];
 }

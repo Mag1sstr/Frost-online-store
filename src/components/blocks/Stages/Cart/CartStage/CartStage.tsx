@@ -1,3 +1,5 @@
+import { data } from "react-router-dom";
+import type { ICart } from "../../../../../types/interfaces";
 import Button from "../../../../elements/Button/Button";
 import Select from "../../../../elements/Select/Select";
 import StageWrapper from "../../../../elements/StageWrapper/StageWrapper";
@@ -6,9 +8,15 @@ import styles from "./CartStage.module.scss";
 interface IProps {
   setMainStage: (stage: number) => void;
   setCurrentStage: (fn: (prev: number) => number) => void;
+  data: ICart[] | undefined;
 }
 
-function CartStage({ setMainStage, setCurrentStage }: IProps) {
+function CartStage({ setMainStage, setCurrentStage, data }: IProps) {
+  const totalPrice = data?.reduce(
+    (acc, el) => acc + el.count * el.product.price,
+    0
+  );
+
   const handleNextStage = () => {
     setMainStage(1);
     setCurrentStage((prev) => prev + 1);
@@ -24,51 +32,35 @@ function CartStage({ setMainStage, setCurrentStage }: IProps) {
             <p>Цена</p>
           </div>
           <div className={styles.col}>
-            <div className={styles.item}>
-              <div className={styles.info}>
-                <p className={styles.name}>
-                  Компрессор кондиционера Hyundai Tucson, Kia Sportage
-                  97701-2E300FD; 0935-03se; Kia Sportage 97701-2E300FD; 0935-02
-                </p>
-                <div className={styles.info__row}>
-                  Артикул: AC97701 <span>Удалить из корзины</span>
+            {data?.map(({ count, product: { id, code, name, price } }) => (
+              <div key={id} className={styles.item}>
+                <div className={styles.info}>
+                  <p className={styles.name}>{name}</p>
+                  <div className={styles.info__row}>
+                    Артикул: {code} <span>Удалить из корзины</span>
+                  </div>
                 </div>
-              </div>
-              <div className={styles.counter}>
-                <div className={styles.counter__row}>
-                  <button>-</button>
-                  <div className={styles.count}>1</div>
-                  <button>+</button>
+                <div className={styles.counter}>
+                  <div className={styles.counter__row}>
+                    <button>-</button>
+                    <div className={styles.count}>{count}</div>
+                    <button>+</button>
+                  </div>
                 </div>
+                <div className={styles.price}>{price * count} тг</div>
               </div>
-              <div className={styles.price}>110 999 тг</div>
-            </div>
-            <div className={styles.item}>
-              <div className={styles.info}>
-                <p className={styles.name}>
-                  Компрессор кондиционера Hyundai Tucson, Kia Sportage
-                  97701-2E300FD; 0935-03se; Kia Sportage 97701-2E300FD; 0935-02
-                </p>
-                <div className={styles.info__row}>
-                  Артикул: AC97701 <span>Удалить из корзины</span>
-                </div>
-              </div>
-              <div className={styles.counter}>
-                <div className={styles.counter__row}>
-                  <button>-</button>1<button>+</button>
-                </div>
-              </div>
-              <div className={styles.price}>110 999 тг</div>
-            </div>
+            ))}
           </div>
           <div className={styles.bottom}>
             <div className={styles.payment}>
               <p>Способ оплаты</p>
               <Select title="Оплата при получении" />
             </div>
-            <div className={styles.total}>
-              <p>Итого к оплате:</p> <span>206 998 тг</span>
-            </div>
+            {totalPrice && (
+              <div className={styles.total}>
+                <p>Итого к оплате:</p> <span>{totalPrice} тг</span>
+              </div>
+            )}
           </div>
         </div>
       </StageWrapper>

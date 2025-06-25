@@ -11,8 +11,7 @@ function CartPage() {
   const [currentStage, setCurrentStage] = useState(0);
   const [mainStage, setMainStage] = useState(0);
 
-  const { data } = useGetCartQuery(null);
-  console.log(data);
+  const { data: cartData } = useGetCartQuery(null);
 
   const stages: IStages[] = [
     {
@@ -21,6 +20,7 @@ function CartPage() {
         <CartStage
           setMainStage={setMainStage}
           setCurrentStage={setCurrentStage}
+          data={cartData?.items}
         />
       ),
     },

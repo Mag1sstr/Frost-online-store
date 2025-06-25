@@ -1,15 +1,26 @@
+import { useState } from "react";
 import { useModals } from "../../../contexts/ModalsContext";
 import type { IProduct, IProductData } from "../../../types/interfaces";
 import styles from "./BuyModal.module.scss";
+import { useAddToCartMutation } from "../../../api/api";
 
 interface IProps {
   product: IProductData | IProduct | null;
 }
 
 function BuyModal({ product }: IProps) {
+  const [count, setCount] = useState(1);
   const { openBuyModal, setOpenBuyModal } = useModals();
+  const [addToCart] = useAddToCartMutation();
 
-  const addToCart = () => {};
+  const handleAddToCart = () => {
+    if (product?.available === 1) {
+      addToCart({ count, productId: product.id }).then(() => {
+        setOpenBuyModal(false);
+      });
+    }
+  };
+
   return (
     <div
       onMouseDown={() => {
@@ -38,13 +49,25 @@ function BuyModal({ product }: IProps) {
         <div className={styles.row}>
           Укажите количество:
           <div className={styles.counter}>
-            <button className={styles.counter__btn}>-</button>
-            <div className={styles.count}>1</div>
-            <button className={styles.counter__btn}>+</button>
+            <button
+              onClick={() => setCount((prev) => (prev > 1 ? prev - 1 : 1))}
+              className={styles.counter__btn}
+            >
+              -
+            </button>
+            <div className={styles.count}>{count}</div>
+            <button
+              onClick={() => setCount((prev) => prev + 1)}
+              className={styles.counter__btn}
+            >
+              +
+            </button>
           </div>
         </div>
         <div className={styles.col}>
-          <button className={styles.btn}>Добавить в корзину</button>
+          <button onClick={handleAddToCart} className={styles.btn}>
+            Добавить в корзину
+          </button>
           <button
             onClick={() => setOpenBuyModal(false)}
             className={styles.second}
