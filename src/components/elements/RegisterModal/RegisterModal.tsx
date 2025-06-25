@@ -27,8 +27,7 @@ function RegisterModal() {
   const [tab, setTab] = useState("register");
   const dispatch = useAppDispatch();
 
-  const [registerUser, { data: regData, isLoading: isRegLoading }] =
-    useRegisterUserMutation();
+  const [registerUser, { isLoading: isRegLoading }] = useRegisterUserMutation();
   const [
     loginUser,
     { data: loginData, isLoading: isLoginLoading, isSuccess: isLoginSuccess },

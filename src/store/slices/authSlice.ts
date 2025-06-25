@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { IUser } from "../../types/interfaces";
-import { useAppSelector, type AppDispatch } from "../store";
-import axios from "axios";
+import { useAppSelector } from "../store";
 
 export interface AuthState {
   user: IUser | null;

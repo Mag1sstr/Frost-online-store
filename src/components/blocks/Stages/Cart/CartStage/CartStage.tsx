@@ -1,4 +1,3 @@
-import { data } from "react-router-dom";
 import type { ICart } from "../../../../../types/interfaces";
 import Button from "../../../../elements/Button/Button";
 import Select from "../../../../elements/Select/Select";

@@ -19,7 +19,7 @@ function App() {
       .catch(() => {
         dispatch(setUser(null));
       });
-  }, [token]);
+  }, [token, dispatch]);
 
   console.log(token);
 
