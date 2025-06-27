@@ -1,3 +1,8 @@
+import {
+  useDecreaseCartItemMutation,
+  useDeleteCartItemMutation,
+  useIncreaseCartItemMutation,
+} from "../../../../../api/api";
 import type { ICart } from "../../../../../types/interfaces";
 import Button from "../../../../elements/Button/Button";
 import Select from "../../../../elements/Select/Select";
@@ -11,6 +16,10 @@ interface IProps {
 }
 
 function CartStage({ setMainStage, setCurrentStage, data }: IProps) {
+  const [increaseCartItem] = useIncreaseCartItemMutation();
+  const [decreaseCartItem] = useDecreaseCartItemMutation();
+  const [deleteCartItem] = useDeleteCartItemMutation();
+
   const totalPrice = data?.reduce(
     (acc, el) => acc + el.count * el.product.price,
     0
@@ -19,6 +28,15 @@ function CartStage({ setMainStage, setCurrentStage, data }: IProps) {
   const handleNextStage = () => {
     setMainStage(1);
     setCurrentStage((prev) => prev + 1);
+  };
+  const handleDeleteCartItem = (id: number) => {
+    deleteCartItem(id);
+  };
+  const handleIncreaseCartItem = (id: number) => {
+    increaseCartItem(id);
+  };
+  const handleDecreaseCartItem = (id: number, count: number) => {
+    if (count > 1) decreaseCartItem(id);
   };
   return (
     <>
@@ -36,14 +54,21 @@ function CartStage({ setMainStage, setCurrentStage, data }: IProps) {
                 <div className={styles.info}>
                   <p className={styles.name}>{name}</p>
                   <div className={styles.info__row}>
-                    Артикул: {code} <span>Удалить из корзины</span>
+                    Артикул: {code}{" "}
+                    <span onClick={() => handleDeleteCartItem(id)}>
+                      Удалить из корзины
+                    </span>
                   </div>
                 </div>
                 <div className={styles.counter}>
                   <div className={styles.counter__row}>
-                    <button>-</button>
+                    <button onClick={() => handleDecreaseCartItem(id, count)}>
+                      -
+                    </button>
                     <div className={styles.count}>{count}</div>
-                    <button>+</button>
+                    <button onClick={() => handleIncreaseCartItem(id)}>
+                      +
+                    </button>
                   </div>
                 </div>
                 <div className={styles.price}>{price * count} тг</div>
@@ -55,7 +80,7 @@ function CartStage({ setMainStage, setCurrentStage, data }: IProps) {
               <p>Способ оплаты</p>
               <Select title="Оплата при получении" />
             </div>
-            {totalPrice && (
+            {!!totalPrice && (
               <div className={styles.total}>
                 <p>Итого к оплате:</p> <span>{totalPrice} тг</span>
               </div>

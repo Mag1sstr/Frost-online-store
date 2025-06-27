@@ -79,8 +79,29 @@ export const api = createApi({
         },
       ],
     }),
+    increaseCartItem: builder.mutation<null, number>({
+      query: (id) => ({
+        method: "GET",
+        url: `/cart/increase?productId=${id}`,
+      }),
+      invalidatesTags: () => [{ type: "Cart" }],
+    }),
+    decreaseCartItem: builder.mutation<null, number>({
+      query: (id) => ({
+        method: "GET",
+        url: `/cart/decrease?productId=${id}`,
+      }),
+      invalidatesTags: () => [{ type: "Cart" }],
+    }),
+    deleteCartItem: builder.mutation<null, number>({
+      query: (id) => ({
+        method: "GET",
+        url: `/cart/delete?productId=${id}`,
+      }),
+      invalidatesTags: () => [{ type: "Cart" }],
+    }),
 
-    registerUser: builder.mutation<{}, IRegisterBody>({
+    registerUser: builder.mutation<null, IRegisterBody>({
       query: ({ first_name, last_name, email, password }) => ({
         method: "POST",
         url: "/registration",
@@ -120,4 +141,7 @@ export const {
   useRegisterUserMutation,
   useLoginUserMutation,
   useGetUserMutation,
+  useIncreaseCartItemMutation,
+  useDecreaseCartItemMutation,
+  useDeleteCartItemMutation,
 } = api;

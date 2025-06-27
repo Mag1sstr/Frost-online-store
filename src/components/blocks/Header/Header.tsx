@@ -136,7 +136,7 @@ function Header() {
               <Link to="/cart">
                 <div className={styles.cart}>
                   <img src={cart} alt="cart" />
-                  {count && count > 0 && <div>{count}</div>}
+                  {count && user && count > 0 && <div>{count}</div>}
                 </div>
               </Link>
             </div>
