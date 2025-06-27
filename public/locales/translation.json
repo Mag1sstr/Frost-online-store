@@ -32,6 +32,13 @@
       "rep_password": "Повторите пароль",
       "btn": "Зарегистрироваться",
       "second": "Войти в существующую учётную запись"
+    },
+    "toast": {
+      "add_cart": "Добавлено в корзину!",
+      "not_available": "Нет в наличии",
+      "login": "Вы зашли в аккаунт!",
+      "reg": "Вы зарегистрировались!",
+      "err_fields": "Заполните все поля!"
     }
   },
   "en": {
@@ -67,6 +74,13 @@
       "rep_password": "Repeat password",
       "btn": "Register",
       "second": "Login to an existing account"
+    },
+    "toast": {
+      "add_cart": "Added to cart!",
+      "not_available": "Not available",
+      "login": "You are logged in!",
+      "reg": "You have registered!",
+      "err_fields": "Fill in all fields!"
     }
   }
 }

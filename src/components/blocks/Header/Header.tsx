@@ -10,6 +10,7 @@ import RegisterModal from "../../elements/RegisterModal/RegisterModal";
 import { useModals } from "../../../contexts/ModalsContext";
 import { useAuth } from "../../../store/slices/authSlice";
 import { useGetCartQuery } from "../../../api/api";
+import { Bounce, ToastContainer } from "react-toastify";
 
 function Header() {
   const { t, lang } = useLang();
@@ -27,6 +28,19 @@ function Header() {
   return (
     <header className={styles.header}>
       <RegisterModal />
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable={false}
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
       <div className={styles.top}>
         <div className="container">
           <div className={styles.row}>

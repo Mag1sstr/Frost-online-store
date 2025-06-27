@@ -3,6 +3,8 @@ import { useModals } from "../../../contexts/ModalsContext";
 import type { IProduct, IProductData } from "../../../types/interfaces";
 import styles from "./BuyModal.module.scss";
 import { useAddToCartMutation } from "../../../api/api";
+import { toast } from "react-toastify";
+import { useLang } from "../../../hooks/useLang";
 
 interface IProps {
   product: IProductData | IProduct | null;
@@ -12,11 +14,13 @@ function BuyModal({ product }: IProps) {
   const [count, setCount] = useState(1);
   const { openBuyModal, setOpenBuyModal } = useModals();
   const [addToCart] = useAddToCartMutation();
+  const { t, lang } = useLang();
 
   const handleAddToCart = () => {
     if (product?.available === 1) {
       addToCart({ count, productId: product.id }).then(() => {
         setOpenBuyModal(false);
+        toast.success(t[lang].toast.add_cart);
       });
     }
   };
