@@ -105,3 +105,11 @@ export interface ICartResponse {
   user: IUser;
   items: ICart[];
 }
+
+export interface CartPageInputs {
+  name: string;
+  surname: string;
+  email: string;
+  tel: string;
+  patronymic: string;
+}

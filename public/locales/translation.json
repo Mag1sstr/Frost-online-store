@@ -38,7 +38,13 @@
       "not_available": "Нет в наличии",
       "login": "Вы зашли в аккаунт!",
       "reg": "Вы зарегистрировались!",
-      "err_fields": "Заполните все поля!"
+      "err_fields": "Заполните все поля!",
+      "incorrect_data": "Неверные данные"
+    },
+    "errors": {
+      "email_err": "Некорректный e-mail",
+      "required": "Обязательное поле",
+      "phone": "Неверный формат"
     }
   },
   "en": {
@@ -80,7 +86,13 @@
       "not_available": "Not available",
       "login": "You are logged in!",
       "reg": "You have registered!",
-      "err_fields": "Fill in all fields!"
+      "err_fields": "Fill in all fields!",
+      "incorrect_data": "Incorrect data"
+    },
+    "errors": {
+      "email_err": "Invalid e-mail",
+      "required": "Required field",
+      "phone": "Invalid format"
     }
   }
 }

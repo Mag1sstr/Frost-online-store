@@ -1,17 +1,33 @@
 import { useState } from "react";
 import styles from "./CartPage.module.scss";
 import CartStage from "../../components/blocks/Stages/Cart/CartStage/CartStage";
-import type { IStages } from "../../types/interfaces";
+import type { CartPageInputs, IStages } from "../../types/interfaces";
 import ContactsStage from "../../components/blocks/Stages/Cart/ContactsStage/ContactsStage";
 import DeliveryStage from "../../components/blocks/Stages/Cart/DeliveryStage/DeliveryStage";
 import FinalStage from "../../components/blocks/Stages/Cart/FinalStage/FinalStage";
 import { useGetCartQuery } from "../../api/api";
+import { useForm } from "react-hook-form";
+import { useAuth } from "../../store/slices/authSlice";
 
 function CartPage() {
   const [currentStage, setCurrentStage] = useState(0);
   const [mainStage, setMainStage] = useState(0);
 
+  const { user } = useAuth();
   const { data: cartData } = useGetCartQuery(null);
+  const {
+    register,
+    formState: { errors },
+  } = useForm<CartPageInputs>({
+    mode: "onChange",
+    defaultValues: {
+      email: user?.email,
+      name: user?.firstName,
+      surname: user?.lastName,
+    },
+  });
+
+  console.log(errors);
 
   const stages: IStages[] = [
     {
@@ -30,6 +46,8 @@ function CartPage() {
         <ContactsStage
           setMainStage={setMainStage}
           setCurrentStage={setCurrentStage}
+          register={register}
+          formErrors={errors}
         />
       ),
     },

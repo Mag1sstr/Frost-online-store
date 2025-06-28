@@ -23,6 +23,7 @@
   gap: 16px;
 }
 .wrapper {
+  position: relative;
   width: 100%;
   p {
     font-weight: 600;
@@ -38,6 +39,13 @@
     padding: 6px 20px;
     font-family: inherit;
   }
+}
+.err {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #cc3300;
+  font-size: 13px;
 }
 
 @media (max-width: 650px) {
