@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useModals } from "../../../contexts/ModalsContext";
 import type { MouseEvent } from "react";
 import { useLang } from "../../../hooks/useLang";
+import { formatPrice } from "../../../utils/formatPrice";
 
 interface IProps extends IProductData {
   onSelect: (item: IProductData) => void;
@@ -29,7 +30,7 @@ function ProductCard({ id, name, price, available, onSelect }: IProps) {
       <div className={styles.wrapper}>
         <p className={styles.title}>{name}</p>
         <div className={styles.row}>
-          {price} тг
+          {formatPrice(price)} тг
           <button onClick={handleBuy} className={styles.btn}>
             {t[lang].cards.buy}
           </button>

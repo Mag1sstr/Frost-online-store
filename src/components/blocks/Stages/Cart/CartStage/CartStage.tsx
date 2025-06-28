@@ -4,6 +4,7 @@ import {
   useIncreaseCartItemMutation,
 } from "../../../../../api/api";
 import type { ICart } from "../../../../../types/interfaces";
+import { formatPrice } from "../../../../../utils/formatPrice";
 import Button from "../../../../elements/Button/Button";
 import Select from "../../../../elements/Select/Select";
 import StageWrapper from "../../../../elements/StageWrapper/StageWrapper";
@@ -71,7 +72,9 @@ function CartStage({ setMainStage, setCurrentStage, data }: IProps) {
                     </button>
                   </div>
                 </div>
-                <div className={styles.price}>{price * count} тг</div>
+                <div className={styles.price}>
+                  {formatPrice(price * count)} тг
+                </div>
               </div>
             ))}
           </div>
@@ -82,7 +85,7 @@ function CartStage({ setMainStage, setCurrentStage, data }: IProps) {
             </div>
             {!!totalPrice && (
               <div className={styles.total}>
-                <p>Итого к оплате:</p> <span>{totalPrice} тг</span>
+                <p>Итого к оплате:</p> <span>{formatPrice(totalPrice)} тг</span>
               </div>
             )}
           </div>
