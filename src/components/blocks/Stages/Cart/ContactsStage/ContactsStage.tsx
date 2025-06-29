@@ -31,11 +31,7 @@ function ContactsStage({
 
   const handleNextStage = () => {
     if (
-      !!contactsValues.name.length &&
-      !!contactsValues.surname.length &&
-      !!contactsValues.patronymic.length &&
-      !!contactsValues.tel.length &&
-      !!contactsValues.email.length &&
+      Object.values(contactsValues).every((el) => el.length > 0) &&
       validatePhoneNumber(contactsValues.tel) &&
       validateEmail(contactsValues.email)
     ) {

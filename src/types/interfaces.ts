@@ -49,22 +49,6 @@ export interface ICart {
   };
 }
 
-export interface IContactsValue {
-  name?: string;
-  surname?: string;
-  patronymic: string;
-  tel: string;
-  email?: string;
-}
-
-export interface IDeliveryValue {
-  house: string;
-  street: string;
-  city: string;
-  apartment: string;
-  region: string;
-}
-
 interface IOrdersItems {
   count: number;
   product: {
@@ -112,4 +96,11 @@ export interface IContactsValues {
   email: string;
   tel: string;
   patronymic: string;
+}
+export interface IDeliveryValues {
+  area: string;
+  city: string;
+  street: string;
+  house: string;
+  apartment: string;
 }
