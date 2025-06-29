@@ -106,7 +106,7 @@ export interface ICartResponse {
   items: ICart[];
 }
 
-export interface CartPageInputs {
+export interface IContactsValues {
   name: string;
   surname: string;
   email: string;

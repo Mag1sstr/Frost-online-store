@@ -1,32 +1,48 @@
-import { type FieldErrors, type UseFormRegister } from "react-hook-form";
 import Button from "../../../../elements/Button/Button";
 import StageWrapper from "../../../../elements/StageWrapper/StageWrapper";
 import styles from "./ContactsStage.module.scss";
-import type { CartPageInputs } from "../../../../../types/interfaces";
+import type { IContactsValues } from "../../../../../types/interfaces";
 import { useLang } from "../../../../../hooks/useLang";
 import { toast } from "react-toastify";
 
 interface IProps {
   setMainStage: (stage: number) => void;
   setCurrentStage: (fn: (prev: number) => number) => void;
-  register: UseFormRegister<CartPageInputs>;
-  formErrors: FieldErrors<CartPageInputs>;
+  contactsValues: IContactsValues;
+  setContactsValues: (fn: (prev: IContactsValues) => IContactsValues) => void;
 }
 
 function ContactsStage({
   setMainStage,
   setCurrentStage,
-  register,
-  formErrors,
+  contactsValues,
+  setContactsValues,
 }: IProps) {
   const { t, lang } = useLang();
 
+  const validatePhoneNumber = (phoneNumber: string) => {
+    const regex = /^((\+7|7|8)+([0-9]){10})$/;
+    return regex.test(phoneNumber);
+  };
+  const validateEmail = (email: string) => {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+  };
+
   const handleNextStage = () => {
-    if (!!Object.keys(formErrors).length) {
-      toast.error(t[lang].toast.incorrect_data);
-    } else {
+    if (
+      !!contactsValues.name.length &&
+      !!contactsValues.surname.length &&
+      !!contactsValues.patronymic.length &&
+      !!contactsValues.tel.length &&
+      !!contactsValues.email.length &&
+      validatePhoneNumber(contactsValues.tel) &&
+      validateEmail(contactsValues.email)
+    ) {
       setMainStage(2);
       setCurrentStage((prev) => prev + 1);
+    } else {
+      toast.error(t[lang].toast.incorrect_data);
     }
   };
 
@@ -38,55 +54,59 @@ function ContactsStage({
           <div className={styles.block}>
             <div className={styles.col}>
               <div className={styles.wrapper}>
-                {formErrors.surname && (
-                  <div className={styles.err}>{formErrors.surname.message}</div>
-                )}
                 <p>Фамилия</p>
                 <input
                   type="text"
-                  {...register("surname", {
-                    required: t[lang].errors.required,
-                  })}
+                  value={contactsValues.surname}
+                  onChange={(e) =>
+                    setContactsValues((prev) => ({
+                      ...prev,
+                      surname: e.target.value,
+                    }))
+                  }
                 />
               </div>
               <div className={styles.wrapper}>
-                {formErrors.name && (
-                  <div className={styles.err}>{formErrors.name.message}</div>
-                )}
                 <p>Имя</p>
                 <input
                   type="text"
-                  {...register("name", { required: t[lang].errors.required })}
+                  value={contactsValues.name}
+                  onChange={(e) =>
+                    setContactsValues((prev) => ({
+                      ...prev,
+                      name: e.target.value,
+                    }))
+                  }
                 />
               </div>
               <div className={styles.wrapper}>
-                {formErrors.patronymic && (
-                  <div className={styles.err}>
-                    {formErrors.patronymic.message}
-                  </div>
-                )}
                 <p>Отчество</p>
                 <input
                   type="text"
-                  {...register("patronymic", {
-                    required: t[lang].errors.required,
-                  })}
+                  value={contactsValues.patronymic}
+                  onChange={(e) =>
+                    setContactsValues((prev) => ({
+                      ...prev,
+                      patronymic: e.target.value,
+                    }))
+                  }
                 />
               </div>
               <div className={styles.wrapper}>
-                {formErrors.tel && (
-                  <div className={styles.err}>{formErrors.tel.message}</div>
-                )}
+                {!validatePhoneNumber(contactsValues.tel) &&
+                  !!contactsValues.tel.length && (
+                    <div className={styles.err}>{t[lang].errors.phone}</div>
+                  )}
                 <p>Телефон</p>
                 <input
                   type="tel"
-                  {...register("tel", {
-                    required: t[lang].errors.required,
-                    pattern: {
-                      value: /^((\+7|7|8)+([0-9]){10})$/,
-                      message: t[lang].errors.phone,
-                    },
-                  })}
+                  value={contactsValues.tel}
+                  onChange={(e) =>
+                    setContactsValues((prev) => ({
+                      ...prev,
+                      tel: e.target.value,
+                    }))
+                  }
                 />
               </div>
             </div>
@@ -94,19 +114,20 @@ function ContactsStage({
           <div className={styles.line}></div>
           <div className={styles.block}>
             <div className={styles.wrapper}>
-              {formErrors.email && (
-                <div className={styles.err}>{formErrors.email.message}</div>
-              )}
+              {!validateEmail(contactsValues.email) &&
+                !!contactsValues.email.length && (
+                  <div className={styles.err}>{t[lang].errors.email_err}</div>
+                )}
               <p>E-mail</p>
               <input
                 type="email"
-                {...register("email", {
-                  required: t[lang].errors.required,
-                  pattern: {
-                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: t[lang].errors.email_err,
-                  },
-                })}
+                value={contactsValues.email}
+                onChange={(e) =>
+                  setContactsValues((prev) => ({
+                    ...prev,
+                    email: e.target.value,
+                  }))
+                }
               />
             </div>
           </div>

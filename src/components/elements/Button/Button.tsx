@@ -10,6 +10,7 @@ interface IProps {
   center?: boolean;
   end?: boolean;
   onClick?: () => void;
+  type?: "submit" | "button" | "reset";
 }
 
 function Button({
@@ -22,6 +23,7 @@ function Button({
   center,
   end,
   onClick,
+  type = "button",
 }: IProps) {
   return (
     <div
@@ -40,6 +42,7 @@ function Button({
         className={styles.btn}
         style={{ fontSize, fontWeight, width, height }}
         onClick={onClick}
+        type={type}
       >
         {children}
       </button>

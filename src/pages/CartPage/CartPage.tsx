@@ -1,33 +1,40 @@
 import { useState } from "react";
 import styles from "./CartPage.module.scss";
 import CartStage from "../../components/blocks/Stages/Cart/CartStage/CartStage";
-import type { CartPageInputs, IStages } from "../../types/interfaces";
+import type { IStages } from "../../types/interfaces";
 import ContactsStage from "../../components/blocks/Stages/Cart/ContactsStage/ContactsStage";
 import DeliveryStage from "../../components/blocks/Stages/Cart/DeliveryStage/DeliveryStage";
 import FinalStage from "../../components/blocks/Stages/Cart/FinalStage/FinalStage";
 import { useGetCartQuery } from "../../api/api";
-import { useForm } from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { useAuth } from "../../store/slices/authSlice";
 
 function CartPage() {
+  const { user } = useAuth();
   const [currentStage, setCurrentStage] = useState(0);
   const [mainStage, setMainStage] = useState(0);
-
-  const { user } = useAuth();
-  const { data: cartData } = useGetCartQuery(null);
-  const {
-    register,
-    formState: { errors },
-  } = useForm<CartPageInputs>({
-    mode: "onChange",
-    defaultValues: {
-      email: user?.email,
-      name: user?.firstName,
-      surname: user?.lastName,
-    },
+  const [contactsValues, setContactsValues] = useState({
+    name: user?.firstName ?? "",
+    surname: user?.lastName ?? "",
+    patronymic: "",
+    tel: "",
+    email: user?.email ?? "",
   });
 
-  console.log(errors);
+  const { data: cartData } = useGetCartQuery(null);
+
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm<CartPageInputs>({
+  //   mode: "onChange",
+  //   defaultValues: {
+  //     email: user?.email,
+  //     name: user?.firstName,
+  //     surname: user?.lastName,
+  //   },
+  // });
 
   const stages: IStages[] = [
     {
@@ -46,8 +53,8 @@ function CartPage() {
         <ContactsStage
           setMainStage={setMainStage}
           setCurrentStage={setCurrentStage}
-          register={register}
-          formErrors={errors}
+          contactsValues={contactsValues}
+          setContactsValues={setContactsValues}
         />
       ),
     },
