@@ -5,13 +5,15 @@ import type { IStages } from "../../types/interfaces";
 import ContactsStage from "../../components/blocks/Stages/Cart/ContactsStage/ContactsStage";
 import DeliveryStage from "../../components/blocks/Stages/Cart/DeliveryStage/DeliveryStage";
 import FinalStage from "../../components/blocks/Stages/Cart/FinalStage/FinalStage";
-import { useGetCartQuery } from "../../api/api";
+import { useCreateOrderMutation, useGetCartQuery } from "../../api/api";
 import { useAuth } from "../../store/slices/authSlice";
+import { toast } from "react-toastify";
 
 function CartPage() {
   const { user } = useAuth();
   const [currentStage, setCurrentStage] = useState(0);
   const [mainStage, setMainStage] = useState(0);
+  const [orderNumber, setOrderNumber] = useState<number | null>(null);
 
   const [contactsValues, setContactsValues] = useState({
     name: user?.firstName ?? "",
@@ -28,20 +30,24 @@ function CartPage() {
     apartment: "",
   });
 
+  const [createOrder, { isLoading: createOrderLoading }] =
+    useCreateOrderMutation();
   const { data: cartData } = useGetCartQuery(null);
 
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm<CartPageInputs>({
-  //   mode: "onChange",
-  //   defaultValues: {
-  //     email: user?.email,
-  //     name: user?.firstName,
-  //     surname: user?.lastName,
-  //   },
-  // });
+  const handleSubmit = () => {
+    createOrder({
+      area: deliveryValues.area,
+      apartment: deliveryValues.apartment,
+      city: deliveryValues.city,
+      house: deliveryValues.house,
+      phone: contactsValues.tel,
+      street: deliveryValues.street,
+    }).then((resp) => {
+      setOrderNumber(resp.data!);
+      toast.success("Заказ оформлен");
+      console.log(resp.data);
+    });
+  };
 
   const stages: IStages[] = [
     {
@@ -73,10 +79,19 @@ function CartPage() {
           setCurrentStage={setCurrentStage}
           deliveryValues={deliveryValues}
           setDeliveryValues={setDeliveryValues}
+          handleSubmit={handleSubmit}
         />
       ),
     },
-    { name: "Завершение", component: <FinalStage /> },
+    {
+      name: "Завершение",
+      component: (
+        <FinalStage
+          createOrderLoading={createOrderLoading}
+          orderNumber={orderNumber}
+        />
+      ),
+    },
   ];
 
   return (

@@ -81,6 +81,15 @@ export interface ILoginBody {
   email: string;
   password: string;
 }
+export interface IOrderBody {
+  phone: string;
+  area: string;
+  city: string;
+  street: string;
+  house: string;
+  apartment: string;
+}
+
 export interface ILoginResponse {
   access_token: string;
   refresh_token: string;

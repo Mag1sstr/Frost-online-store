@@ -5,6 +5,7 @@ import type {
   ICommets,
   ILoginBody,
   ILoginResponse,
+  IOrderBody,
   IProduct,
   IProductData,
   IRegisterBody,
@@ -129,6 +130,14 @@ export const api = createApi({
         url: "/auth/user",
       }),
     }),
+
+    createOrder: builder.mutation<number, IOrderBody>({
+      query: (body) => ({
+        method: "POST",
+        url: "/orders",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -144,4 +153,5 @@ export const {
   useIncreaseCartItemMutation,
   useDecreaseCartItemMutation,
   useDeleteCartItemMutation,
+  useCreateOrderMutation,
 } = api;

@@ -10,6 +10,7 @@ interface IProps {
   setCurrentStage: (fn: (prev: number) => number) => void;
   deliveryValues: IDeliveryValues;
   setDeliveryValues: (fn: (prev: IDeliveryValues) => IDeliveryValues) => void;
+  handleSubmit: () => void;
 }
 
 function DeliveryStage({
@@ -17,6 +18,7 @@ function DeliveryStage({
   setCurrentStage,
   deliveryValues,
   setDeliveryValues,
+  handleSubmit,
 }: IProps) {
   const { t, lang } = useLang();
 
@@ -24,6 +26,7 @@ function DeliveryStage({
     if (Object.values(deliveryValues).some((el) => el.length === 0)) {
       toast.error(t[lang].toast.incorrect_data);
     } else {
+      handleSubmit();
       setMainStage(3);
       setCurrentStage((prev) => prev + 1);
     }
