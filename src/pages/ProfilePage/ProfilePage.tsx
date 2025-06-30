@@ -10,7 +10,6 @@ function ProfilePage() {
   const [currentStage, setCurrentStage] = useState(0);
 
   const { data: ordersData } = useGetOrdersQuery(null);
-  console.log(ordersData);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -41,60 +40,6 @@ function ProfilePage() {
       ),
       component: <OrdersStage ordersData={ordersData} />,
     },
-    // {
-    //   name: "Контактные данные",
-    //   img: (
-    //     <svg
-    //       className={styles.icon}
-    //       width="27"
-    //       height="27"
-    //       viewBox="0 0 27 27"
-    //       fill="none"
-    //       xmlns="http://www.w3.org/2000/svg"
-    //     >
-    //       <path
-    //         d="M4.70215 22.1786C6.21176 18.6479 9.58311 16.1898 13.4999 16.1898C17.5109 16.1898 20.9499 18.7676 22.4033 22.4352"
-    //         stroke="#1A2749"
-    //         strokeWidth="2"
-    //       />
-    //       <circle
-    //         cx="13.5002"
-    //         cy="10.8507"
-    //         r="4.58271"
-    //         stroke="#1A2749"
-    //         strokeWidth="2"
-    //       />
-    //       <circle
-    //         cx="13.5"
-    //         cy="13.5"
-    //         r="12.5"
-    //         stroke="#1A2749"
-    //         strokeWidth="2"
-    //       />
-    //     </svg>
-    //   ),
-    //   component: <OrdersStage />,
-    // },
-    // {
-    //   name: "Доставка",
-    //   img: (
-    //     <svg
-    //       className={styles.icon}
-    //       width="28"
-    //       height="25"
-    //       viewBox="0 0 28 25"
-    //       fill="none"
-    //       xmlns="http://www.w3.org/2000/svg"
-    //     >
-    //       <path
-    //         d="M14.5488 22.7559L14.5488 19L0.999999 19L1 6L14.5488 6L14.5488 2.13086L26.4717 12.0303L14.5488 22.7559Z"
-    //         stroke="#1a2749"
-    //         strokeWidth="2"
-    //       />
-    //     </svg>
-    //   ),
-    //   component: <OrdersStage />,
-    // },
   ];
   return (
     <section className={styles.profile}>

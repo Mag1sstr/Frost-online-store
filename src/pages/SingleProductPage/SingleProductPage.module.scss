@@ -146,23 +146,6 @@
   }
 }
 
-.help {
-  min-width: 295px;
-  width: 400px;
-  color: #7a7a7a;
-  order: 3;
-}
-.help__title {
-  font-weight: 600;
-  margin-bottom: 11px;
-}
-.help__block {
-  width: 100%;
-  padding: 20px 27px;
-  border: 1px solid #e5e5e5;
-  background-color: #f4f4f4;
-}
-
 @media (max-width: 1133px) {
   .description {
     flex-direction: column;
@@ -181,9 +164,7 @@
   .block__img {
     width: 295px;
   }
-  .help {
-    width: 100%;
-  }
+
   .card {
     width: 100%;
   }

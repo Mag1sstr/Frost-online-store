@@ -21,8 +21,6 @@ function App() {
       });
   }, [token, dispatch]);
 
-  console.log(token);
-
   return (
     <div className="app">
       <div>

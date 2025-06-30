@@ -71,6 +71,11 @@ export const api = createApi({
         url: "/orders",
       }),
     }),
+    getReviewCheck: builder.query<boolean, string>({
+      query: (id) => ({
+        url: `/reviews/exists?productId=${id}`,
+      }),
+    }),
 
     addToCart: builder.mutation<null, { productId: number; count: number }>({
       query: ({ productId, count }) => ({
@@ -154,6 +159,7 @@ export const {
   useGetReviewsQuery,
   useGetCartQuery,
   useGetOrdersQuery,
+  useGetReviewCheckQuery,
   useAddToCartMutation,
   useRegisterUserMutation,
   useLoginUserMutation,

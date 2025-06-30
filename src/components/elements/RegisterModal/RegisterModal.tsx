@@ -19,11 +19,7 @@ interface Inputs {
 }
 
 function RegisterModal() {
-  const {
-    register,
-    handleSubmit,
-    // formState: { errors },
-  } = useForm<Inputs>();
+  const { register, handleSubmit } = useForm<Inputs>();
   const [tab, setTab] = useState("register");
   const dispatch = useAppDispatch();
 
@@ -48,8 +44,6 @@ function RegisterModal() {
     setOpenRegisterModal(false);
     dispatch(setToken(loginData.access_token));
   }
-
-  console.log("Login resp", loginData);
 
   return (
     <form

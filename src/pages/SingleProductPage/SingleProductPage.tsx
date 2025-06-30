@@ -9,7 +9,11 @@ import not from "../../images/singleProduct/not.svg";
 import { useEffect, useState } from "react";
 import { useLang } from "../../hooks/useLang";
 import { useParams } from "react-router-dom";
-import { useGetReviewsQuery, useGetSingleProductQuery } from "../../api/api";
+import {
+  useGetReviewCheckQuery,
+  useGetReviewsQuery,
+  useGetSingleProductQuery,
+} from "../../api/api";
 import BuyModal from "../../components/elements/BuyModal/BuyModal";
 import { useModals } from "../../contexts/ModalsContext";
 import Loader from "../../components/elements/Loader/Loader";
@@ -22,6 +26,7 @@ function SingleProductPage() {
   const { id } = useParams();
 
   const { data, isLoading, isSuccess, isError } = useGetSingleProductQuery(id!);
+  const { data: reviewCheck } = useGetReviewCheckQuery(id!);
   const { data: reviews } = useGetReviewsQuery(id!);
 
   const { t, lang } = useLang();
@@ -30,8 +35,6 @@ function SingleProductPage() {
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, []);
-
-  console.log(reviews);
 
   return (
     <>
@@ -57,10 +60,6 @@ function SingleProductPage() {
                     </div>
                   ))}
                 </div>
-              </div>
-              <div className={styles.help}>
-                <p className={styles.help__title}>Применим к автомобилям: </p>
-                <div className={styles.help__block}></div>
               </div>
 
               <div className={styles.description}>
@@ -106,7 +105,7 @@ function SingleProductPage() {
                   </button>
                 </div>
               </div>
-              <Reviews data={reviews!} />
+              <Reviews data={reviews!} reviewCheck={reviewCheck} />
             </div>
           </div>
         </section>
