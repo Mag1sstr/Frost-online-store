@@ -44,7 +44,8 @@
     "errors": {
       "email_err": "Некорректный e-mail",
       "required": "Обязательное поле",
-      "phone": "Неверный формат"
+      "phone": "Неверный формат",
+      "unknown": "Что-то пошло не так"
     }
   },
   "en": {
@@ -92,7 +93,8 @@
     "errors": {
       "email_err": "Invalid e-mail",
       "required": "Required field",
-      "phone": "Invalid format"
+      "phone": "Invalid format",
+      "unknown": "Something went wrong"
     }
   }
 }

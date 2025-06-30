@@ -5,17 +5,22 @@ import Pagination from "../Pagination/Pagination";
 import styles from "./Reviews.module.scss";
 import { useAuth } from "../../../store/slices/authSlice";
 import Button from "../../elements/Button/Button";
+import { useLang } from "../../../hooks/useLang";
 
 interface IProps {
   data: ICommets[] | undefined;
   reviewCheck: boolean | undefined;
+  handleCreateOrder: (review: string) => void;
 }
 
-function Reviews({ data, reviewCheck }: IProps) {
+function Reviews({ data, reviewCheck, handleCreateOrder }: IProps) {
   const [currentPage, setCurrentPage] = useState(1);
+  const [reviewValue, setReviewValue] = useState("");
+  const [reviewError, setReviewError] = useState(false);
 
   const { setOpenRegisterModal } = useModals();
   const { user } = useAuth();
+  const { t, lang } = useLang();
 
   const pageSize = 5;
   const totalPages = data ? Math.ceil(data.length / pageSize) : null;
@@ -33,8 +38,27 @@ function Reviews({ data, reviewCheck }: IProps) {
             </div>
           ) : (
             <div className={styles.create}>
-              <textarea placeholder="Напишите впечатления о товаре"></textarea>
-              <Button end width={190} height={40}>
+              {reviewError && (
+                <div className={styles.err}>{t[lang].errors.required}</div>
+              )}
+              <textarea
+                placeholder="Напишите впечатления о товаре"
+                value={reviewValue}
+                onChange={(e) => setReviewValue(e.target.value)}
+              ></textarea>
+              <Button
+                onClick={() => {
+                  if (!!reviewValue.length) {
+                    setReviewError(false);
+                    handleCreateOrder(reviewValue);
+                  } else {
+                    setReviewError(true);
+                  }
+                }}
+                end
+                width={190}
+                height={40}
+              >
                 Оставить отзыв
               </Button>
             </div>

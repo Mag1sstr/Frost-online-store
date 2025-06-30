@@ -3,6 +3,7 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import type {
   ICartResponse,
   ICommets,
+  ICreateReviewBody,
   ILoginBody,
   ILoginResponse,
   IOrderBody,
@@ -150,6 +151,13 @@ export const api = createApi({
         body,
       }),
     }),
+    createReview: builder.mutation<null, ICreateReviewBody>({
+      query: (body) => ({
+        method: "POST",
+        url: "/reviews",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -168,4 +176,5 @@ export const {
   useDecreaseCartItemMutation,
   useDeleteCartItemMutation,
   useCreateOrderMutation,
+  useCreateReviewMutation,
 } = api;

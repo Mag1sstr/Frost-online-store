@@ -39,6 +39,7 @@
   line-height: 1.45;
 }
 .create {
+  position: relative;
   margin-bottom: 20px;
   textarea {
     width: 100%;
@@ -51,6 +52,12 @@
     font-size: 16px;
     outline: none;
   }
+}
+.err {
+  position: absolute;
+  top: -20px;
+  right: 0;
+  color: #cc3300;
 }
 
 @media (max-width: 1133px) {

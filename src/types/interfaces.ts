@@ -110,3 +110,7 @@ export interface IDeliveryValues {
   house: string;
   apartment: string;
 }
+export interface ICreateReviewBody {
+  product_id: string;
+  review: string;
+}

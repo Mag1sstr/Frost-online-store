@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { useLang } from "../../hooks/useLang";
 import { useParams } from "react-router-dom";
 import {
+  useCreateReviewMutation,
   useGetReviewCheckQuery,
   useGetReviewsQuery,
   useGetSingleProductQuery,
@@ -18,6 +19,7 @@ import BuyModal from "../../components/elements/BuyModal/BuyModal";
 import { useModals } from "../../contexts/ModalsContext";
 import Loader from "../../components/elements/Loader/Loader";
 import Reviews from "../../components/blocks/Reviews/Reviews";
+import { toast } from "react-toastify";
 
 const images = [img1, img2, img3, img4];
 
@@ -29,12 +31,27 @@ function SingleProductPage() {
   const { data: reviewCheck } = useGetReviewCheckQuery(id!);
   const { data: reviews } = useGetReviewsQuery(id!);
 
+  const [createOrder] = useCreateReviewMutation();
+
   const { t, lang } = useLang();
   const { setOpenBuyModal } = useModals();
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, []);
+
+  const handleCreateOrder = (review: string) => {
+    createOrder({
+      product_id: id!,
+      review,
+    })
+      .then(() => {
+        location.reload();
+      })
+      .catch(() => {
+        toast.error(t[lang].errors.unknown);
+      });
+  };
 
   return (
     <>
@@ -105,7 +122,11 @@ function SingleProductPage() {
                   </button>
                 </div>
               </div>
-              <Reviews data={reviews!} reviewCheck={reviewCheck} />
+              <Reviews
+                data={reviews!}
+                reviewCheck={reviewCheck}
+                handleCreateOrder={handleCreateOrder}
+              />
             </div>
           </div>
         </section>
