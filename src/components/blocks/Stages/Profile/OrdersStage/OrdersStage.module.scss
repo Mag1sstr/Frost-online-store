@@ -32,6 +32,12 @@
   gap: 30px;
 }
 
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
 .order {
   border-top: 1px solid #d3d3d3;
   padding-top: 30px;

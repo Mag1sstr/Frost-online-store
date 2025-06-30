@@ -49,21 +49,18 @@ export interface ICart {
   };
 }
 
-interface IOrdersItems {
-  count: number;
-  product: {
-    price: number;
-    name: string;
-  };
-}
 export interface IOrdersData {
-  items: IOrdersItems[];
-  product: {
-    price: number;
-    count: number;
-  };
   id: number;
   created_at: number;
+  items: {
+    count: number;
+    product: {
+      name: string;
+      id: number;
+      price: number;
+      code: string;
+    };
+  }[];
 }
 
 export interface IStages {

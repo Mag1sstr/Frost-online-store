@@ -4,9 +4,13 @@ import OrdersStage from "../../components/blocks/Stages/Profile/OrdersStage/Orde
 import { useAppDispatch } from "../../store/store";
 import { logoutUser } from "../../store/slices/authSlice";
 import { useNavigate } from "react-router-dom";
+import { useGetOrdersQuery } from "../../api/api";
 
 function ProfilePage() {
   const [currentStage, setCurrentStage] = useState(0);
+
+  const { data: ordersData } = useGetOrdersQuery(null);
+  console.log(ordersData);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -35,42 +39,42 @@ function ProfilePage() {
           />
         </svg>
       ),
-      component: <OrdersStage />,
+      component: <OrdersStage ordersData={ordersData} />,
     },
-    {
-      name: "Контактные данные",
-      img: (
-        <svg
-          className={styles.icon}
-          width="27"
-          height="27"
-          viewBox="0 0 27 27"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M4.70215 22.1786C6.21176 18.6479 9.58311 16.1898 13.4999 16.1898C17.5109 16.1898 20.9499 18.7676 22.4033 22.4352"
-            stroke="#1A2749"
-            strokeWidth="2"
-          />
-          <circle
-            cx="13.5002"
-            cy="10.8507"
-            r="4.58271"
-            stroke="#1A2749"
-            strokeWidth="2"
-          />
-          <circle
-            cx="13.5"
-            cy="13.5"
-            r="12.5"
-            stroke="#1A2749"
-            strokeWidth="2"
-          />
-        </svg>
-      ),
-      component: <OrdersStage />,
-    },
+    // {
+    //   name: "Контактные данные",
+    //   img: (
+    //     <svg
+    //       className={styles.icon}
+    //       width="27"
+    //       height="27"
+    //       viewBox="0 0 27 27"
+    //       fill="none"
+    //       xmlns="http://www.w3.org/2000/svg"
+    //     >
+    //       <path
+    //         d="M4.70215 22.1786C6.21176 18.6479 9.58311 16.1898 13.4999 16.1898C17.5109 16.1898 20.9499 18.7676 22.4033 22.4352"
+    //         stroke="#1A2749"
+    //         strokeWidth="2"
+    //       />
+    //       <circle
+    //         cx="13.5002"
+    //         cy="10.8507"
+    //         r="4.58271"
+    //         stroke="#1A2749"
+    //         strokeWidth="2"
+    //       />
+    //       <circle
+    //         cx="13.5"
+    //         cy="13.5"
+    //         r="12.5"
+    //         stroke="#1A2749"
+    //         strokeWidth="2"
+    //       />
+    //     </svg>
+    //   ),
+    //   component: <OrdersStage />,
+    // },
     // {
     //   name: "Доставка",
     //   img: (

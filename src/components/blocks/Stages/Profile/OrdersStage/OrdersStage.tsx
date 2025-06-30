@@ -1,6 +1,12 @@
+import type { IOrdersData } from "../../../../../types/interfaces";
+import { formatPrice } from "../../../../../utils/formatPrice";
 import styles from "./OrdersStage.module.scss";
 
-function OrdersStage() {
+interface IProps {
+  ordersData: IOrdersData[] | undefined;
+}
+
+function OrdersStage({ ordersData }: IProps) {
   return (
     <div className={styles.orders}>
       <div className={styles.container}>
@@ -14,52 +20,45 @@ function OrdersStage() {
       </div>
 
       <div className={styles.col}>
-        <div className={styles.order}>
-          <div className={styles.container}>
-            <div className={styles.order__row}>
-              <p className={styles.number}>
-                <span>Номер заказа</span> №100001
-              </p>
-              <div className={styles.info}>
-                <p className={styles.name}>
-                  <span>Наименование товара</span>
-                  Компрессор кондиционера Hyundai Tucson, Kia Sportage
-                  97701-2E300FD; 0935-03se; Kia Sportage 97701-2E300FD; 0935-02
-                </p>
-                <p className={styles.count}>1 X 110 999 тг</p>
+        {ordersData?.map((item) => {
+          const totalPrice = item.items.reduce(
+            (acc, el) => acc + el.count * el.product.price,
+            0
+          );
+
+          return (
+            <div key={item.id} className={styles.order}>
+              <div className={styles.container}>
+                <div className={styles.order__row}>
+                  <p className={styles.number}>
+                    <span>Номер заказа</span> №{item.id}
+                  </p>
+                  <div className={styles.info}>
+                    {item.items.map(({ product, count }) => (
+                      <div key={product.id} className={styles.info__item}>
+                        <p className={styles.name}>
+                          <span>Наименование товара</span>
+                          {product.name}
+                        </p>
+                        <p className={styles.count}>
+                          {count} X {formatPrice(product.price)} тг
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                  <p className={styles.date}>
+                    <span>Дата заказа</span>
+                    {new Date(item.created_at).toLocaleDateString()}
+                  </p>
+                  <p className={styles.price}>
+                    <span>Стоимость</span>
+                    {formatPrice(totalPrice)} тг
+                  </p>
+                </div>
               </div>
-              <p className={styles.date}>
-                <span>Дата заказа</span>06.07.2019
-              </p>
-              <p className={styles.price}>
-                <span>Стоимость</span>206 998 тг
-              </p>
             </div>
-          </div>
-        </div>
-        <div className={styles.order}>
-          <div className={styles.container}>
-            <div className={styles.order__row}>
-              <p className={styles.number}>
-                <span>Номер заказа</span> №100001
-              </p>
-              <div className={styles.info}>
-                <p className={styles.name}>
-                  <span>Наименование товара</span>
-                  Компрессор кондиционера Hyundai Tucson, Kia Sportage
-                  97701-2E300FD; 0935-03se; Kia Sportage 97701-2E300FD; 0935-02
-                </p>
-                <p className={styles.count}>1 X 110 999 тг</p>
-              </div>
-              <p className={styles.date}>
-                <span>Дата заказа</span>06.07.2019
-              </p>
-              <p className={styles.price}>
-                <span>Стоимость</span>206 998 тг
-              </p>
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </div>
   );

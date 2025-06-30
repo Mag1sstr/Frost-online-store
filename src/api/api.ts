@@ -6,6 +6,7 @@ import type {
   ILoginBody,
   ILoginResponse,
   IOrderBody,
+  IOrdersData,
   IProduct,
   IProductData,
   IRegisterBody,
@@ -65,6 +66,12 @@ export const api = createApi({
         },
       ],
     }),
+    getOrders: builder.query<IOrdersData[], null>({
+      query: () => ({
+        url: "/orders",
+      }),
+    }),
+
     addToCart: builder.mutation<null, { productId: number; count: number }>({
       query: ({ productId, count }) => ({
         method: "GET",
@@ -146,6 +153,7 @@ export const {
   useGetSingleProductQuery,
   useGetReviewsQuery,
   useGetCartQuery,
+  useGetOrdersQuery,
   useAddToCartMutation,
   useRegisterUserMutation,
   useLoginUserMutation,
