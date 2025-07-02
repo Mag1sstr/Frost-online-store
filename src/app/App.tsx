@@ -19,7 +19,7 @@ function App() {
       .catch(() => {
         dispatch(setUser(null));
       });
-  }, [token, dispatch]);
+  }, [token, dispatch, getUser]);
 
   return (
     <div className="app">

@@ -22,6 +22,8 @@ function BuyModal({ product }: IProps) {
         setOpenBuyModal(false);
         toast.success(t[lang].toast.add_cart);
       });
+    } else {
+      toast.error(t[lang].toast.not_available);
     }
   };
 

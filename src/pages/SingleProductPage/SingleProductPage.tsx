@@ -31,7 +31,8 @@ function SingleProductPage() {
   const { data: reviewCheck } = useGetReviewCheckQuery(id!);
   const { data: reviews } = useGetReviewsQuery(id!);
 
-  const [createOrder] = useCreateReviewMutation();
+  const [createOrder, { isLoading: createOrderFetching }] =
+    useCreateReviewMutation();
 
   const { t, lang } = useLang();
   const { setOpenBuyModal } = useModals();
@@ -55,7 +56,7 @@ function SingleProductPage() {
 
   return (
     <>
-      {isLoading && <Loader />}
+      {isLoading || createOrderFetching ? <Loader /> : null}
       {isSuccess && (
         <section className={styles.product}>
           <BuyModal product={data!} />

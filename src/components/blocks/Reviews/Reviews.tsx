@@ -48,7 +48,7 @@ function Reviews({ data, reviewCheck, handleCreateOrder }: IProps) {
               ></textarea>
               <Button
                 onClick={() => {
-                  if (!!reviewValue.length) {
+                  if (reviewValue.length > 0) {
                     setReviewError(false);
                     handleCreateOrder(reviewValue);
                   } else {
