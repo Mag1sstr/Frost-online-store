@@ -11,7 +11,6 @@ import { useModals } from "../../../contexts/ModalsContext";
 import { useAuth } from "../../../store/slices/authSlice";
 import { useGetCartQuery } from "../../../api/api";
 import { Bounce, ToastContainer } from "react-toastify";
-import { useState } from "react";
 
 function Header() {
   const { t, lang } = useLang();
