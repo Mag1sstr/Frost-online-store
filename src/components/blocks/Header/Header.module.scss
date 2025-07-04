@@ -24,6 +24,11 @@
   align-items: center;
   justify-content: space-between;
 }
+.logo__wrapper {
+  display: flex;
+  align-items: center;
+}
+
 .city {
   font-size: 18px;
   font-weight: 600;
@@ -142,5 +147,8 @@
   }
   .logo {
     display: none;
+  }
+  .logo__wrapper {
+    gap: 6px;
   }
 }

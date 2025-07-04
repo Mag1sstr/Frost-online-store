@@ -11,4 +11,16 @@
   &:hover {
     text-shadow: 0 0 7px white;
   }
+
+  img {
+    width: 26px;
+    margin-right: 6px;
+  }
+}
+@media (max-width: 350px) {
+  .switch {
+    img {
+      display: none;
+    }
+  }
 }

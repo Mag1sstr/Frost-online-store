@@ -54,16 +54,18 @@ function Header() {
         ) : (
           <div className="container">
             <div className={styles.row}>
-              <MobileLogo />
-              <Link to="/">
-                <img
-                  draggable={false}
-                  className={styles.logo}
-                  src={logo}
-                  alt="logo"
-                />
-              </Link>
-              <LanguageSwitch />
+              <div className={styles.logo__wrapper}>
+                <MobileLogo />
+                <Link to="/">
+                  <img
+                    draggable={false}
+                    className={styles.logo}
+                    src={logo}
+                    alt="logo"
+                  />
+                </Link>
+                <LanguageSwitch />
+              </div>
 
               <div className={styles.city}>
                 <p>{t[lang].header.astana}</p>
