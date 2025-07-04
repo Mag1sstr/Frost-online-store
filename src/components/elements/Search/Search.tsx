@@ -6,6 +6,7 @@ import { useGetProductsQuery } from "../../../api/api";
 import { useDebounce } from "../../../hooks/useDebounce";
 import { Link } from "react-router-dom";
 import { useModals } from "../../../contexts/ModalsContext";
+import { useWindowWidth } from "../../../hooks/useWindowWidth";
 
 interface IProps {
   mobile?: boolean;
@@ -16,12 +17,17 @@ function Search({ mobile = false }: IProps) {
 
   const debounceSearchValue = useDebounce(searchValue);
   const { setOpenMobileSearch } = useModals();
+  const windowWidth = useWindowWidth();
 
   const { t, lang } = useLang();
   const { data } = useGetProductsQuery({
     page: 1,
     size: 18,
   });
+
+  if (windowWidth > 650) {
+    setOpenMobileSearch(false);
+  }
 
   return (
     <>
