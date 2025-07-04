@@ -33,8 +33,12 @@ function Search({ mobile = false }: IProps) {
     <>
       {mobile ? (
         <div className={styles.mobile}>
-          <input type="text" placeholder="Поиск по каталогу ..." />
-
+          <input
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            type="text"
+            placeholder={t[lang].header.search}
+          />
           <div onClick={() => setOpenMobileSearch(false)}>
             <svg
               width="17"
@@ -50,6 +54,32 @@ function Search({ mobile = false }: IProps) {
               />
             </svg>
           </div>
+
+          <div
+            className={`${styles.drop} ${searchValue.trim() && styles.open}`}
+          >
+            <ul className={styles.col}>
+              {data?.items
+                ?.filter((el) =>
+                  el.name
+                    .trim()
+                    .toLowerCase()
+                    .includes(debounceSearchValue.trim().toLowerCase())
+                )
+                .map((item) => (
+                  <Link
+                    key={item.id}
+                    to={`/products/${item.id}`}
+                    onClick={() => {
+                      setOpenMobileSearch(false);
+                      setSearchValue("");
+                    }}
+                  >
+                    <div className={styles.item}>{item.name}</div>
+                  </Link>
+                ))}
+            </ul>
+          </div>
         </div>
       ) : (
         <div className={styles.search}>
@@ -61,6 +91,7 @@ function Search({ mobile = false }: IProps) {
           />
           <div className={styles.line}></div>
           <img src={search} alt="search" />
+
           <div
             className={`${styles.drop} ${searchValue.trim() && styles.open}`}
           >
@@ -81,6 +112,12 @@ function Search({ mobile = false }: IProps) {
                     <div className={styles.item}>{item.name}</div>
                   </Link>
                 ))}
+              {!data?.items?.filter((el) =>
+                el.name
+                  .trim()
+                  .toLowerCase()
+                  .includes(debounceSearchValue.trim().toLowerCase())
+              ).length && <p>Не найдено</p>}
             </ul>
           </div>
         </div>
