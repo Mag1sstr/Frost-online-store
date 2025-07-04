@@ -3,16 +3,24 @@ import banner1 from "../../../images/banners/01.jpg";
 import banner2 from "../../../images/banners/02.jpg";
 import banner3 from "../../../images/banners/03.jpg";
 import { useState } from "react";
+import { useWindowWidth } from "../../../hooks/useWindowWidth";
 
 const banners = [banner1, banner2, banner3];
 
 function Slider() {
   const [step, setStep] = useState(0);
+
+  const windowWidth = useWindowWidth();
+
   const handleNext = () => {
-    setStep((prev) => prev + window.innerWidth);
+    if (step < banners.length - 1) {
+      setStep((prev) => prev + 1);
+    }
   };
   const handlePrevios = () => {
-    setStep((prev) => prev - window.innerWidth);
+    if (step > 0) {
+      setStep((prev) => prev - 1);
+    }
   };
 
   return (
@@ -35,7 +43,7 @@ function Slider() {
       </button>
       <div
         className={styles.row}
-        style={{ transform: `translateX(-${step}px)` }}
+        style={{ transform: `translateX(-${step * windowWidth}px)` }}
       >
         {banners.map((banner, i) => (
           <img
