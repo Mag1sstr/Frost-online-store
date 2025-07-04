@@ -5,6 +5,8 @@ interface IModalsContext {
   setOpenRegisterModal: (open: boolean) => void;
   openBuyModal: boolean;
   setOpenBuyModal: (open: boolean) => void;
+  openMobileSearch: boolean;
+  setOpenMobileSearch: (open: boolean) => void;
 }
 
 export const ModalsContext = createContext({} as IModalsContext);
@@ -16,6 +18,7 @@ export default function ModalsContextProvider({
 }) {
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
   const [openBuyModal, setOpenBuyModal] = useState(false);
+  const [openMobileSearch, setOpenMobileSearch] = useState(false);
 
   return (
     <ModalsContext.Provider
@@ -24,6 +27,8 @@ export default function ModalsContextProvider({
         setOpenRegisterModal,
         openBuyModal,
         setOpenBuyModal,
+        openMobileSearch,
+        setOpenMobileSearch,
       }}
     >
       {children}
