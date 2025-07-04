@@ -50,6 +50,7 @@ function Slider() {
             key={i}
             draggable={false}
             className={styles.banner}
+            style={{ width: windowWidth }}
             src={banner}
             alt=""
           />
