@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useModals } from "../../../contexts/ModalsContext";
 import styles from "./RegisterModal.module.scss";
 import { useLang } from "../../../hooks/useLang";
@@ -10,6 +10,7 @@ import {
 } from "../../../api/api";
 import { useAppDispatch } from "../../../store/store";
 import { setToken } from "../../../store/slices/authSlice";
+import { toast } from "react-toastify";
 
 interface Inputs {
   first_name: string;
@@ -40,10 +41,14 @@ function RegisterModal() {
       loginUser(data);
     }
   };
-  if (isLoginSuccess) {
-    setOpenRegisterModal(false);
-    dispatch(setToken(loginData.access_token));
-  }
+
+  useEffect(() => {
+    if (isLoginSuccess && loginData?.access_token) {
+      setOpenRegisterModal(false);
+      dispatch(setToken(loginData.access_token));
+      toast.success(t[lang].toast.login);
+    }
+  }, [isLoginSuccess, loginData, setOpenRegisterModal, dispatch]);
 
   return (
     <form
