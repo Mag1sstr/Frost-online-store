@@ -1,4 +1,4 @@
-.empty {
+.wrapper {
   height: calc(100vh - 130px - 110px);
   display: flex;
   flex-direction: column;
@@ -6,10 +6,7 @@
   justify-content: center;
   margin-top: -40px;
   transition: 0.2s;
-  img {
-    width: 180px;
-    transition: 0.2s;
-  }
+
   p {
     font-size: 54px;
     margin-bottom: 30px;
@@ -29,7 +26,7 @@
   }
 }
 @media (max-width: 650px) {
-  .empty {
+  .wrapper {
     p {
       font-size: 28px;
     }

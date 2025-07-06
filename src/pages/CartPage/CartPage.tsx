@@ -9,6 +9,7 @@ import { useCreateOrderMutation, useGetCartQuery } from "../../api/api";
 import { useAuth } from "../../store/slices/authSlice";
 import { toast } from "react-toastify";
 import EmptyCart from "../../components/blocks/EmptyCart/EmptyCart";
+import NotAuthorized from "../../components/blocks/NotAuthorized/NotAuthorized";
 
 function CartPage() {
   const { user } = useAuth();
@@ -97,6 +98,10 @@ function CartPage() {
 
   if (cartData && !cartData.items.length) {
     return <EmptyCart />;
+  }
+
+  if (!user) {
+    return <NotAuthorized />;
   }
 
   return (
