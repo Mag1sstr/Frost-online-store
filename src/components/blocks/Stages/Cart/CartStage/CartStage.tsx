@@ -39,6 +39,7 @@ function CartStage({ setMainStage, setCurrentStage, data }: IProps) {
   const handleDecreaseCartItem = (id: number, count: number) => {
     if (count > 1) decreaseCartItem(id);
   };
+
   return (
     <>
       <StageWrapper>

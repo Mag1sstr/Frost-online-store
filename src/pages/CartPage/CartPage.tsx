@@ -8,6 +8,7 @@ import FinalStage from "../../components/blocks/Stages/Cart/FinalStage/FinalStag
 import { useCreateOrderMutation, useGetCartQuery } from "../../api/api";
 import { useAuth } from "../../store/slices/authSlice";
 import { toast } from "react-toastify";
+import EmptyCart from "../../components/blocks/EmptyCart/EmptyCart";
 
 function CartPage() {
   const { user } = useAuth();
@@ -93,6 +94,10 @@ function CartPage() {
       ),
     },
   ];
+
+  if (cartData && !cartData.items.length) {
+    return <EmptyCart />;
+  }
 
   return (
     <section className={styles.cart}>

@@ -1,0 +1,34 @@
+.empty {
+  height: calc(100vh - 130px - 110px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: -40px;
+  transition: 0.2s;
+  img {
+    width: 180px;
+    transition: 0.2s;
+  }
+  p {
+    font-size: 54px;
+    margin-bottom: 30px;
+    transition: 0.2s;
+  }
+}
+.link {
+  font-weight: 500;
+  color: #2156bd;
+  font-size: 20px;
+  text-decoration: underline;
+}
+@media (max-width: 650px) {
+  .empty {
+    p {
+      font-size: 28px;
+    }
+  }
+  .link {
+    font-size: 18px;
+  }
+}
