@@ -11,6 +11,7 @@ import { useModals } from "../../../contexts/ModalsContext";
 import { useGetCartQuery } from "../../../api/api";
 import { Bounce, ToastContainer } from "react-toastify";
 import { useAuth } from "../../../hooks/useAuth";
+import LoginModal from "../../elements/LoginModal/LoginModal";
 
 function Header() {
   const { t, lang } = useLang();
@@ -29,6 +30,7 @@ function Header() {
   return (
     <header className={styles.header}>
       <RegisterModal />
+      <LoginModal />
       <ToastContainer
         position="top-right"
         autoClose={2000}

@@ -30,14 +30,6 @@ function BuyModal({ product }: IProps) {
     } else {
       toast.error(t[lang].toast.not_available);
     }
-    // if (product?.available === 1) {
-    //   addToCart({ count, productId: product.id }).then(() => {
-    //     setOpenBuyModal(false);
-    //     toast.success(t[lang].toast.add_cart);
-    //   });
-    // } else {
-    //   toast.error(t[lang].toast.not_available);
-    // }
   };
 
   return (

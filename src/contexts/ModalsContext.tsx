@@ -3,6 +3,8 @@ import { createContext, useContext, useState } from "react";
 interface IModalsContext {
   openRegisterModal: boolean;
   setOpenRegisterModal: (open: boolean) => void;
+  openLoginModal: boolean;
+  setOpenLoginModal: (open: boolean) => void;
   openBuyModal: boolean;
   setOpenBuyModal: (open: boolean) => void;
   openMobileSearch: boolean;
@@ -17,6 +19,8 @@ export default function ModalsContextProvider({
   children: React.ReactNode;
 }) {
   const [openRegisterModal, setOpenRegisterModal] = useState(false);
+  const [openLoginModal, setOpenLoginModal] = useState(false);
+
   const [openBuyModal, setOpenBuyModal] = useState(false);
   const [openMobileSearch, setOpenMobileSearch] = useState(false);
 
@@ -29,6 +33,8 @@ export default function ModalsContextProvider({
         setOpenBuyModal,
         openMobileSearch,
         setOpenMobileSearch,
+        openLoginModal,
+        setOpenLoginModal,
       }}
     >
       {children}

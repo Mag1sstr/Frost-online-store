@@ -31,7 +31,6 @@
 .wrapper.open .modal {
   margin-top: 0;
 }
-
 .title {
   font-size: 30px;
   font-weight: 400;
@@ -42,19 +41,6 @@
   flex-direction: column;
   gap: 25px;
   margin-bottom: 46px;
-}
-.row {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  gap: 30px;
-  p {
-    position: absolute;
-    top: -17px;
-    right: 0;
-    font-size: 13px;
-    color: #cc3300;
-  }
 }
 .field {
   position: relative;
@@ -120,12 +106,9 @@
   .title {
     font-size: 20px;
   }
-  .row {
-    flex-direction: column;
-    gap: 10px;
-  }
+
   .col {
-    gap: 10px;
+    gap: 18px;
   }
   .close {
     display: block;

@@ -20,35 +20,29 @@ interface Inputs {
 }
 
 function RegisterModal() {
-  const { register, handleSubmit } = useForm<Inputs>();
-  const [tab, setTab] = useState("register");
-  const dispatch = useAppDispatch();
+  const { register, handleSubmit, formState } = useForm<Inputs>({
+    mode: "onChange",
+  });
 
-  const [registerUser, { isLoading: isRegLoading }] = useRegisterUserMutation();
-  const [
-    loginUser,
-    { data: loginData, isLoading: isLoginLoading, isSuccess: isLoginSuccess },
-  ] = useLoginUserMutation();
+  const [registerUser, { isLoading, isSuccess }] = useRegisterUserMutation();
 
-  const { openRegisterModal, setOpenRegisterModal } = useModals();
+  const { openRegisterModal, setOpenRegisterModal, setOpenLoginModal } =
+    useModals();
   const { t, lang } = useLang();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    if (tab === "register") {
+    if (!Object.values(formState.errors).length) {
       registerUser(data);
-    }
-    if (tab === "login") {
-      loginUser(data);
     }
   };
 
   useEffect(() => {
-    if (isLoginSuccess && loginData?.access_token) {
+    if (isSuccess) {
+      toast.success(t[lang].toast.reg);
       setOpenRegisterModal(false);
-      dispatch(setToken(loginData.access_token));
-      toast.success(t[lang].toast.login);
+      setOpenLoginModal(true);
     }
-  }, [isLoginSuccess, loginData, setOpenRegisterModal, dispatch]);
+  }, [isSuccess]);
 
   return (
     <form
@@ -56,8 +50,7 @@ function RegisterModal() {
       onMouseDown={() => setOpenRegisterModal(false)}
       className={`${styles.wrapper} ${openRegisterModal && styles.open}`}
     >
-      {isRegLoading && <Loader />}
-      {isLoginLoading && <Loader />}
+      {isLoading && <Loader />}
       <div onMouseDown={(e) => e.stopPropagation()} className={styles.modal}>
         <div
           onClick={() => setOpenRegisterModal(false)}
@@ -78,77 +71,83 @@ function RegisterModal() {
           </svg>
         </div>
 
-        {tab === "register" && (
-          <p className={styles.title}>{t[lang].register_modal.title}</p>
-        )}
-        {tab === "login" && (
-          <p className={styles.title}>Вход в учётную запись</p>
-        )}
+        <p className={styles.title}>{t[lang].register_modal.title}</p>
+
         <div className={styles.col}>
-          {tab === "register" && (
-            <div className={styles.row}>
-              <input
-                className={styles.input}
-                type="text"
-                placeholder={t[lang].register_modal.name}
-                {...register("first_name")}
-              />
-              <input
-                className={styles.input}
-                type="text"
-                placeholder={t[lang].register_modal.surname}
-                {...register("last_name")}
-              />
-            </div>
-          )}
-          <input
-            className={styles.input}
-            type="text"
-            placeholder={t[lang].register_modal.email}
-            {...register("email", {
-              required: true,
-            })}
-          />
-          <input
-            className={styles.input}
-            type="text"
-            placeholder={t[lang].register_modal.password}
-            {...register("password", {
-              required: true,
-            })}
-          />
-          {tab === "register" && (
+          <div className={styles.row}>
+            {formState.errors.first_name || formState.errors.last_name ? (
+              <p>{formState.errors.first_name?.message}</p>
+            ) : null}
+
+            <input
+              className={styles.input}
+              type="text"
+              placeholder={t[lang].register_modal.name}
+              {...register("first_name", {
+                required: t[lang].errors.required,
+              })}
+            />
+            <input
+              className={styles.input}
+              type="text"
+              placeholder={t[lang].register_modal.surname}
+              {...register("last_name", {
+                required: t[lang].errors.required,
+              })}
+            />
+          </div>
+          <div className={styles.field}>
+            {formState.errors.email && <p>{formState.errors.email.message}</p>}
+            <input
+              className={styles.input}
+              type="text"
+              placeholder={t[lang].register_modal.email}
+              {...register("email", {
+                required: t[lang].errors.required,
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: t[lang].errors.email_err,
+                },
+              })}
+            />
+          </div>
+
+          <div className={styles.field}>
+            {formState.errors.password && (
+              <p>{formState.errors.password?.message}</p>
+            )}
+            <input
+              className={styles.input}
+              type="password"
+              placeholder={t[lang].register_modal.password}
+              {...register("password", {
+                required: t[lang].errors.required,
+              })}
+            />
+          </div>
+
+          <div className={styles.field}>
             <input
               className={styles.input}
               type="text"
               placeholder={t[lang].register_modal.rep_password}
             />
-          )}
+          </div>
         </div>
         <div className={styles.buttons}>
-          {tab === "register" && (
-            <>
-              <button type="submit" className={styles.btn}>
-                {t[lang].register_modal.btn}
-              </button>
-              <button onClick={() => setTab("login")} className={styles.second}>
-                {t[lang].register_modal.second}
-              </button>
-            </>
-          )}
-          {tab === "login" && (
-            <>
-              <button type="submit" className={styles.btn}>
-                Войти
-              </button>
-              <button
-                onClick={() => setTab("register")}
-                className={styles.second}
-              >
-                Создать новую учётную запись
-              </button>
-            </>
-          )}
+          <button type="submit" className={styles.btn}>
+            {t[lang].register_modal.btn}
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setOpenRegisterModal(false);
+              setOpenLoginModal(true);
+            }}
+            className={styles.second}
+          >
+            {t[lang].register_modal.second}
+          </button>
         </div>
       </div>
     </form>

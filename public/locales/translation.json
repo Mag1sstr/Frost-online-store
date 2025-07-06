@@ -37,7 +37,7 @@
       "add_cart": "Добавлено в корзину!",
       "not_available": "Нет в наличии",
       "login": "Вы зашли в аккаунт!",
-      "reg": "Вы зарегистрировались!",
+      "reg": "Вы зарегистрировались! \n Теперь вы можете войти в аккаунт.",
       "err_fields": "Заполните все поля!",
       "incorrect_data": "Неверные данные"
     },
@@ -87,7 +87,7 @@
       "add_cart": "Added to cart!",
       "not_available": "Not available",
       "login": "You are logged in!",
-      "reg": "You have registered!",
+      "reg": "You have registered! \n You can now log into your account.",
       "err_fields": "Fill in all fields!",
       "incorrect_data": "Incorrect data"
     },
