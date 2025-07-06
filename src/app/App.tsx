@@ -4,7 +4,8 @@ import AppRouter from "../components/blocks/AppRouter/AppRouter";
 import Footer from "../components/blocks/Footer/Footer";
 import Header from "../components/blocks/Header/Header";
 import { useAppDispatch } from "../store/store";
-import { setUser, useAuth } from "../store/slices/authSlice";
+import { setUser } from "../store/slices/authSlice";
+import { useAuth } from "../hooks/useAuth";
 
 function App() {
   const dispatch = useAppDispatch();

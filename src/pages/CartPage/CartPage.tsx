@@ -6,10 +6,10 @@ import ContactsStage from "../../components/blocks/Stages/Cart/ContactsStage/Con
 import DeliveryStage from "../../components/blocks/Stages/Cart/DeliveryStage/DeliveryStage";
 import FinalStage from "../../components/blocks/Stages/Cart/FinalStage/FinalStage";
 import { useCreateOrderMutation, useGetCartQuery } from "../../api/api";
-import { useAuth } from "../../store/slices/authSlice";
 import { toast } from "react-toastify";
 import EmptyCart from "../../components/blocks/EmptyCart/EmptyCart";
 import NotAuthorized from "../../components/blocks/NotAuthorized/NotAuthorized";
+import { useAuth } from "../../hooks/useAuth";
 
 function CartPage() {
   const { user } = useAuth();

@@ -5,6 +5,7 @@ import styles from "./BuyModal.module.scss";
 import { useAddToCartMutation } from "../../../api/api";
 import { toast } from "react-toastify";
 import { useLang } from "../../../hooks/useLang";
+import { useAuth } from "../../../hooks/useAuth";
 
 interface IProps {
   product: IProductData | IProduct | null;
@@ -12,12 +13,16 @@ interface IProps {
 
 function BuyModal({ product }: IProps) {
   const [count, setCount] = useState(1);
+
   const { openBuyModal, setOpenBuyModal } = useModals();
+  const { user } = useAuth();
   const [addToCart] = useAddToCartMutation();
   const { t, lang } = useLang();
 
   const handleAddToCart = () => {
-    if (product?.available === 1) {
+    if (!user) {
+      toast.error(t[lang].errors.not_auth);
+    } else if (product?.available && user) {
       addToCart({ count, productId: product.id }).then(() => {
         setOpenBuyModal(false);
         toast.success(t[lang].toast.add_cart);
@@ -25,6 +30,14 @@ function BuyModal({ product }: IProps) {
     } else {
       toast.error(t[lang].toast.not_available);
     }
+    // if (product?.available === 1) {
+    //   addToCart({ count, productId: product.id }).then(() => {
+    //     setOpenBuyModal(false);
+    //     toast.success(t[lang].toast.add_cart);
+    //   });
+    // } else {
+    //   toast.error(t[lang].toast.not_available);
+    // }
   };
 
   return (

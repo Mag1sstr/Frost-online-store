@@ -45,7 +45,8 @@
       "email_err": "Некорректный e-mail",
       "required": "Обязательное поле",
       "phone": "Неверный формат",
-      "unknown": "Что-то пошло не так"
+      "unknown": "Что-то пошло не так",
+      "not_auth": "Вы не авторизованы"
     }
   },
   "en": {
@@ -94,7 +95,8 @@
       "email_err": "Invalid e-mail",
       "required": "Required field",
       "phone": "Invalid format",
-      "unknown": "Something went wrong"
+      "unknown": "Something went wrong",
+      "not_auth": "You are not logged in"
     }
   }
 }

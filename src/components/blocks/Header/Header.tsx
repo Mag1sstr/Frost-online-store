@@ -8,9 +8,9 @@ import { useLang } from "../../../hooks/useLang";
 import LanguageSwitch from "../../elements/LanguageSwitch/LanguageSwitch";
 import RegisterModal from "../../elements/RegisterModal/RegisterModal";
 import { useModals } from "../../../contexts/ModalsContext";
-import { useAuth } from "../../../store/slices/authSlice";
 import { useGetCartQuery } from "../../../api/api";
 import { Bounce, ToastContainer } from "react-toastify";
+import { useAuth } from "../../../hooks/useAuth";
 
 function Header() {
   const { t, lang } = useLang();

@@ -3,9 +3,9 @@ import { useModals } from "../../../contexts/ModalsContext";
 import type { ICommets } from "../../../types/interfaces";
 import Pagination from "../Pagination/Pagination";
 import styles from "./Reviews.module.scss";
-import { useAuth } from "../../../store/slices/authSlice";
 import Button from "../../elements/Button/Button";
 import { useLang } from "../../../hooks/useLang";
+import { useAuth } from "../../../hooks/useAuth";
 
 interface IProps {
   data: ICommets[] | undefined;
