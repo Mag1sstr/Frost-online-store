@@ -1,15 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useModals } from "../../../contexts/ModalsContext";
 import styles from "./RegisterModal.module.scss";
 import { useLang } from "../../../hooks/useLang";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import Loader from "../Loader/Loader";
-import {
-  useLoginUserMutation,
-  useRegisterUserMutation,
-} from "../../../api/api";
-import { useAppDispatch } from "../../../store/store";
-import { setToken } from "../../../store/slices/authSlice";
+import { useRegisterUserMutation } from "../../../api/api";
 import { toast } from "react-toastify";
 
 interface Inputs {
