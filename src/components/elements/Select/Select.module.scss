@@ -23,10 +23,16 @@
   user-select: none;
   transition: 0.2s;
   img {
-    padding-right: 6px;
+    transition: 0.2s;
     user-select: none;
   }
 }
+.select.open {
+  img {
+    transform: rotate(180deg);
+  }
+}
+
 .drop {
   visibility: hidden;
   opacity: 0;
