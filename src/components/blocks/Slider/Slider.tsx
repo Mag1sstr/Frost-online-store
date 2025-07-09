@@ -13,14 +13,14 @@ function Slider() {
   const windowWidth = useWindowWidth();
 
   const handleNext = () => {
-    if (step < banners.length - 1) {
-      setStep((prev) => prev + 1);
-    }
+    setStep((prev) =>
+      prev < banners.length - 1 ? prev + 1 : prev === banners.length - 1 ? 0 : 0
+    );
   };
   const handlePrevios = () => {
-    if (step > 0) {
-      setStep((prev) => prev - 1);
-    }
+    setStep((prev) =>
+      prev > 0 ? prev - 1 : prev === 0 ? banners.length - 1 : 0
+    );
   };
 
   return (
@@ -53,6 +53,7 @@ function Slider() {
             style={{ width: windowWidth }}
             src={banner}
             alt=""
+            height={500}
           />
         ))}
       </div>
